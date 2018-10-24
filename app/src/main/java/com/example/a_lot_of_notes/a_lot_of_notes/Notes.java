@@ -1,24 +1,24 @@
 package com.example.a_lot_of_notes.a_lot_of_notes;
 
-public class Note {
+public class Notes {
 
     private int id;
     private String title;
     private String note;
 
-    public Note(){
+    public Notes(){
 
     }
 
 
     /* Note constructors - START*/
-    public Note(int id,String title,String note){
+    public Notes(int id,String title,String note){
         this.id = id;
         this.title = title;
         this.note = note;
     }
 
-    public Note(String title,String note){
+    public Notes(String title,String note){
         this.title = title;
         this.note = note;
     }

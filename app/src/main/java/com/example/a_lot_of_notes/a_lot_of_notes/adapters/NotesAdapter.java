@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.a_lot_of_notes.a_lot_of_notes.Note;
+import com.example.a_lot_of_notes.a_lot_of_notes.Notes;
+import com.example.a_lot_of_notes.a_lot_of_notes.Notes;
 import com.example.a_lot_of_notes.a_lot_of_notes.R;
 
 import java.util.ArrayList;
@@ -17,9 +18,9 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
     Context context;
-    List<Note> noteList = new ArrayList<>();
+    List<Notes> noteList = new ArrayList<>();
 
-    public NotesAdapter(Context context, List<Note> noteList) {
+    public NotesAdapter(Context context, List<Notes> noteList) {
         this.context = context;
         this.noteList = noteList;
     }
@@ -31,11 +32,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return nvh;
     }
 
-    @NonNull
-    @Override
-    public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
-    }
 
     @Override
     public void onBindViewHolder(NotesViewHolder holder, int position) {
