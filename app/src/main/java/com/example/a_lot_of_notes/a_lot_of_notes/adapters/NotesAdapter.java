@@ -1,15 +1,13 @@
 package com.example.a_lot_of_notes.a_lot_of_notes.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.a_lot_of_notes.a_lot_of_notes.Notes;
-import com.example.a_lot_of_notes.a_lot_of_notes.Notes;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
 import com.example.a_lot_of_notes.a_lot_of_notes.R;
 
 import java.util.ArrayList;

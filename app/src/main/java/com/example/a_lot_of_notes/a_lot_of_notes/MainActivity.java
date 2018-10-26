@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity
 
         if(id == R.id.nav_folders){
             Log.d(TAG, ".onNavigationItemSelected: clicked nav_folders");
-            Intent navToFolders = new Intent(this, ListView.class);
-            startActivity(navToFolders);
+            Intent navToDirectories = new Intent(this, NavDirectories.class);
+            startActivity(navToDirectories);
         }else if (id == R.id.nav_camera) {
             // Handle the camera action
             // take photo, save to gallery?

@@ -16,9 +16,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
 
 public class Database extends SQLiteOpenHelper{
     // TAG for debugging
@@ -27,66 +32,65 @@ public class Database extends SQLiteOpenHelper{
     // Variables for database
     private static final String DB_NAME = "notes_db";
     private static final int DB_VERSION = 1;
-    // possibly replace name defined in Notes.class
-    // these columns are just dummies, replace with definitions in Note.class
-    private static final String DB_TABLE_NAME = "table_name";
-    private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_DIRECTORY = "directory";
-    private static final String COLUMN_PROJECT = "project";
-    private static final String COLUMN_NOTES = "notes";
-    private static final String COLUMN_NOTES_TTLE = "notes_title";
-    private static final String COLUMN_NOTES_CONTENT = "notes_content";
 
+    Context ctx;
 
-    Context cntxt;
+    private static String CREATE_DIRECTORIES_TABLE = "CREATE TABLE "
+            + Directories.Directories_Entry.TABLE_NAME + " ("
+            + Directories.Directories_Entry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " TEXT,"
+            + Directories.Directories_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
+    private static String CREATE_PROJECTS_TABLE = "CREATE TABLE "
+            + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " ("
+            + Projects.Projects_Entry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " TEXT,"
+            + Projects.Projects_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
+    private static String CREATE_NOTES_TABLE = "CREATE TABLE "
+            + Notes.NotesEntry.TABLE_NAME + " ("
+            + Notes.NotesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + Notes.NotesEntry.COLUMN_NOTES_DIRECTORY+ " TEXT, "
+            + Notes.NotesEntry.COLUMN_NOTES_PROJECT + " TEXT, "
+            + Notes.NotesEntry.COLUMN_NOTES_TITLE + " TEXT, "
+            + Notes.NotesEntry.COLUMN_NOTES_CONTENT + " TEXT, "
+            + Notes.NotesEntry.COLUMN_TIMESTAMP + " DATETIME" + ")";
 
     public Database(Context context){
         super(context, DB_NAME, null, DB_VERSION);
-        cntxt = context;
+        ctx = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(TAG, "onCreate: starting database creation");
 
-        // String to make define database
-        // First string to initialize a database with the dummy columns
-        //  When creating db with Notes.class, may need some revision.
-        String CREATE_TABLE = "CREATE TABLE " + DB_TABLE_NAME + " ("
-                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_DIRECTORY+ " TEXT, "
-                + COLUMN_PROJECT + " TEXT, "
-                + COLUMN_NOTES + " TEXT, "
-                + COLUMN_NOTES_TTLE + " TEXT, "
-                + COLUMN_NOTES_CONTENT + " TEXT" + ")";
-
         // Exec SQL database
-        db.execSQL(CREATE_TABLE);
+        db.execSQL(CREATE_DIRECTORIES_TABLE);
+        db.execSQL(CREATE_PROJECTS_TABLE);
+        db.execSQL(CREATE_NOTES_TABLE);
 
         Log.d(TAG, "onCreate: ending database creation");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("drop table if exists " + DB_TABLE_NAME);
+        db.execSQL("drop table if exists " + Directories.Directories_Entry.TABLE_NAME);
+        db.execSQL("drop table if exists " + Projects.Projects_Entry.TABLE_NAME);
+        db.execSQL("drop table if exists " + Notes.NotesEntry.TABLE_NAME);
+
         onCreate(db);
     }
     
-    public boolean insertData(String notes, String title, String content){
+    public boolean insertNote(String title, String content){
         Log.d(TAG, "insertData: starting");
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        // what should we cv put?
-        // How to handle different additions to database? whether a new directory or note?
+        cv.put(Notes.NotesEntry.COLUMN_NOTES_TITLE, title);
+        cv.put(Notes.NotesEntry.COLUMN_NOTES_CONTENT, content);
 
-        // maybe start by assuming that only notes will be add first before directories
-        cv.put(COLUMN_NOTES, notes);
-        cv.put(COLUMN_NOTES_TTLE, title);
-        cv.put(COLUMN_NOTES_CONTENT, content);
 
         Log.d(TAG, "insertData: before inserting content values into database");
-        db.insert(DB_TABLE_NAME, null, cv);
+        db.insert(Notes.NotesEntry.TABLE_NAME, null, cv);
         Log.d(TAG, "insertData: after inserting content values into database");
 
         Log.d(TAG, "insertData: ending");
@@ -97,18 +101,18 @@ public class Database extends SQLiteOpenHelper{
     // A query to get all notes. May need separate queries to get notes in specific directory, or
     //  from a specific project.
     public Cursor getAllNotes(){
-        Log.d(TAG, "getData: starting");
+        Log.d(TAG, "getAllNotes: starting");
         SQLiteDatabase db = getReadableDatabase();
         String query = "";
         Cursor data = db.rawQuery(query, null);
 
-        Log.d(TAG, "getData: ending");
+        Log.d(TAG, "getAllNotes: ending");
         return data;
     }
 
 
     // define queries to get needs
-    public Cursor getNotesFromDirectory(){
+    public Cursor getAllDirectories(){
         Log.d(TAG, "getNotesFromDirectory: starting");
         SQLiteDatabase db = getReadableDatabase();
         String query = "";
@@ -118,6 +122,16 @@ public class Database extends SQLiteOpenHelper{
         return data;
     }
 
+    // define queries to get needs
+    public Cursor getProjects(){
+        Log.d(TAG, "getProjects: starting");
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "";
+        Cursor data = db.rawQuery(query, null);
+
+        Log.d(TAG, "getProjects: ending");
+        return data;
+    }
 
     // define query to meet needs
     public Cursor getNotesFromProject(){
@@ -128,5 +142,25 @@ public class Database extends SQLiteOpenHelper{
 
         Log.d(TAG, "getNotesFromProject: ending");
         return data;
+    }
+
+
+    // methods to implement:
+    // update directories/note content
+    // delete items
+    // ...and?
+
+    public void deleteSingleDirectory(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Directories.Directories_Entry.TABLE_NAME,
+                Directories.Directories_Entry._ID + "=?", new String[]{id});
+    }
+
+    public void deleteSingleNote(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+    }
+
+    public void deleteSingleProject(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 }

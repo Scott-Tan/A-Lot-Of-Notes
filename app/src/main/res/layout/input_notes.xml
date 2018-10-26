@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/input_notes_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Title"
+        android:textColor="@color/black_semi_transparent" />
+
+    <EditText
+        android:id="@+id/input_notes_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Name your note"
+        android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:id="@+id/input_notes_textview_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Body"
+        android:textColor="@color/black_semi_transparent" />
+
+    <EditText
+        android:id="@+id/input_notes_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:hint="Add your note..."
+        android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+        android:paddingLeft="5dp" />
+
+    <Button
+        android:id="@+id/input_notes_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="save_notes"
+        android:text="save" />
+
+</LinearLayout>
