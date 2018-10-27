@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/testpage_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the test page"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/testpage_note_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="note title"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/testpage_note_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="note content"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/testpage_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="save"
+        android:text="save" />
+
+    <Button
+        android:id="@+id/testpage_clear_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clear_notes"
+        android:text="Clear" />
+
+    <ListView
+        android:id="@+id/testpage_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.widget.LinearLayout>

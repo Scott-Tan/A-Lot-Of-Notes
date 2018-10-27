@@ -103,7 +103,7 @@ public class Database extends SQLiteOpenHelper{
     public Cursor getAllNotes(){
         Log.d(TAG, "getAllNotes: starting");
         SQLiteDatabase db = getReadableDatabase();
-        String query = "";
+        String query = "SELECT * FROM " + Notes.NotesEntry.TABLE_NAME;
         Cursor data = db.rawQuery(query, null);
 
         Log.d(TAG, "getAllNotes: ending");
@@ -154,8 +154,13 @@ public class Database extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Directories.Directories_Entry.TABLE_NAME,
                 Directories.Directories_Entry._ID + "=?", new String[]{id});
+
     }
 
+    public void deleteAllNotes(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Notes.NotesEntry.TABLE_NAME, null, null);
+    }
     public void deleteSingleNote(String id){
         SQLiteDatabase db = this.getWritableDatabase();
     }
