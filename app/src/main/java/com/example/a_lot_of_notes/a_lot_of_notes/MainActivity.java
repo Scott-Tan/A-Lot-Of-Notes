@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
 
         if(id == R.id.nav_folders){
             Log.d(TAG, ".onNavigationItemSelected: clicked nav_folders");
-            Intent navToDirectories = new Intent(this, NavDirectories.class);
+            Intent navToDirectories = new Intent(this, PageDirectories.class);
             startActivity(navToDirectories);
         }else if (id == R.id.nav_camera) {
             // Handle the camera action

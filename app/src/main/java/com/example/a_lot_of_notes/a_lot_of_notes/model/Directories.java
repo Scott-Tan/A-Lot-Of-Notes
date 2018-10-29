@@ -10,5 +10,11 @@ public class Directories {
         public static final String TABLE_NAME = "directories_table";
         public static final String COLUMN_DIRECTORIES_NAME = "directories_name";
         public static final String COLUMN_TIMESTAMP = "directories_timestamp";
+
+        public static String CREATE_DIRECTORIES_TABLE = "CREATE TABLE "
+                + Directories.Directories_Entry.TABLE_NAME + " ("
+                + Directories.Directories_Entry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " TEXT,"
+                + Directories.Directories_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
     }
 }

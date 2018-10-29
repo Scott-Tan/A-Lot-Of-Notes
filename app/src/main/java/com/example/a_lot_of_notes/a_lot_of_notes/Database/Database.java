@@ -35,24 +35,6 @@ public class Database extends SQLiteOpenHelper{
 
     Context ctx;
 
-    private static String CREATE_DIRECTORIES_TABLE = "CREATE TABLE "
-            + Directories.Directories_Entry.TABLE_NAME + " ("
-            + Directories.Directories_Entry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " TEXT,"
-            + Directories.Directories_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
-    private static String CREATE_PROJECTS_TABLE = "CREATE TABLE "
-            + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " ("
-            + Projects.Projects_Entry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " TEXT,"
-            + Projects.Projects_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
-    private static String CREATE_NOTES_TABLE = "CREATE TABLE "
-            + Notes.NotesEntry.TABLE_NAME + " ("
-            + Notes.NotesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Notes.NotesEntry.COLUMN_NOTES_DIRECTORY+ " TEXT, "
-            + Notes.NotesEntry.COLUMN_NOTES_PROJECT + " TEXT, "
-            + Notes.NotesEntry.COLUMN_NOTES_TITLE + " TEXT, "
-            + Notes.NotesEntry.COLUMN_NOTES_CONTENT + " TEXT, "
-            + Notes.NotesEntry.COLUMN_TIMESTAMP + " DATETIME" + ")";
 
     public Database(Context context){
         super(context, DB_NAME, null, DB_VERSION);
@@ -64,9 +46,9 @@ public class Database extends SQLiteOpenHelper{
         Log.d(TAG, "onCreate: starting database creation");
 
         // Exec SQL database
-        db.execSQL(CREATE_DIRECTORIES_TABLE);
-        db.execSQL(CREATE_PROJECTS_TABLE);
-        db.execSQL(CREATE_NOTES_TABLE);
+        db.execSQL(Directories.Directories_Entry.CREATE_DIRECTORIES_TABLE);
+        db.execSQL(Projects.Projects_Entry.CREATE_PROJECTS_TABLE);
+        db.execSQL(Notes.NotesEntry.CREATE_NOTES_TABLE);
 
         Log.d(TAG, "onCreate: ending database creation");
     }
@@ -79,7 +61,17 @@ public class Database extends SQLiteOpenHelper{
 
         onCreate(db);
     }
-    
+
+    public boolean insertDirectory(){
+        Log.d(TAG, "insertDirectory: starting");
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+
+        Log.d(TAG, "insertDirectory: ending");
+        return true;
+    }
+
     public boolean insertNote(String title, String content){
         Log.d(TAG, "insertData: starting");
         SQLiteDatabase db = getWritableDatabase();
@@ -115,7 +107,7 @@ public class Database extends SQLiteOpenHelper{
     public Cursor getAllDirectories(){
         Log.d(TAG, "getNotesFromDirectory: starting");
         SQLiteDatabase db = getReadableDatabase();
-        String query = "";
+        String query = "SELECT * FROM " + Directories.Directories_Entry.TABLE_NAME;
         Cursor data = db.rawQuery(query, null);
 
         Log.d(TAG, "getNotesFromDirectory: ending");
@@ -123,7 +115,7 @@ public class Database extends SQLiteOpenHelper{
     }
 
     // define queries to get needs
-    public Cursor getProjects(){
+    public Cursor getAllProjects(){
         Log.d(TAG, "getProjects: starting");
         SQLiteDatabase db = getReadableDatabase();
         String query = "";

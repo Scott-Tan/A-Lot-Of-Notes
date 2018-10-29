@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/show_notes_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='show_note.xml\n\nThis should show the title and content of a note.  \n\nUse "include" container in other xml files to open this. For example, in test_page.xml.  \n\nTestPages sets this textbox to something new.'
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="44dp" />
+</android.widget.LinearLayout>

@@ -41,9 +41,16 @@
         android:onClick="clear_notes"
         android:text="Clear" />
 
-    <ListView
-        android:id="@+id/testpage_listview"
+    <Button
+        android:id="@+id/testpage_addnotes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:onClick="addNote"
+        android:text="test addnotes" />
+
+    <include
+        layout="@layout/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </android.widget.LinearLayout>

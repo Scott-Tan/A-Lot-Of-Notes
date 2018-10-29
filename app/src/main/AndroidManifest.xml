@@ -19,9 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NavDirectories"></activity>
-        <activity android:name=".InputNotes"></activity>
+        <activity android:name=".PageDirectories"></activity>
+        <activity android:name=".AddNotes"></activity>
         <activity android:name=".TestPages"></activity>
+        <activity android:name=".ShowNote"></activity>
     </application>
 
 </manifest>
