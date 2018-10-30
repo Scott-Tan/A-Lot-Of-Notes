@@ -45,9 +45,11 @@ public class AddNotes extends AppCompatActivity {
 
         String title = editText_title.getText().toString();
         String content = editText_content.getText().toString();
+        String directory_tag = "";
+        String project_tag = "";
 
         Log.d(TAG, "save_notes: inserting notes to database");
-        db.insertNote(title, content);
+        db.insertNote(title, content, directory_tag, project_tag);
         db.close();
         Log.d(TAG, "save_notes: inserting done");
 

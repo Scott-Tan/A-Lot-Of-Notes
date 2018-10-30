@@ -104,7 +104,10 @@ public class TestPages extends AppCompatActivity {
     public void save(View view) {
         String s1 = noteTitle.getText().toString();
         String s2 = noteContent.getText().toString();
-        db.insertNote(s1, s2);
+        String s3 = "";
+        String s4 = "";
+
+        db.insertNote(s1, s2, s3, s4);
 
         populateListView();
     }

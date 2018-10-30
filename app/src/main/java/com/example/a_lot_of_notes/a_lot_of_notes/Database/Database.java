@@ -15,15 +15,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Database extends SQLiteOpenHelper{
     // TAG for debugging
@@ -62,31 +62,53 @@ public class Database extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean insertDirectory(){
+    public long insertDirectory(String name){
         Log.d(TAG, "insertDirectory: starting");
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        cv.put(Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME, name);
+        cv.put(Directories.Directories_Entry.COLUMN_TIMESTAMP, getDateTime());
+
+        Log.d(TAG, "insertDirectory: before insertion");
+        long directory_id = db.insert(Directories.Directories_Entry.TABLE_NAME, null, cv);
 
         Log.d(TAG, "insertDirectory: ending");
-        return true;
+        return directory_id;
     }
 
-    public boolean insertNote(String title, String content){
+    public long insertProject(String name, String directory_tag){
+        Log.d(TAG, "insertProject: starting");
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(Projects.Projects_Entry.COLUMN_PROJECTS_NAME, name);
+        cv.put(Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY, directory_tag);
+        cv.put(Projects.Projects_Entry.COLUMN_TIMESTAMP, getDateTime());
+
+        Log.d(TAG, "insertProject: before insertion");
+        long project_id = db.insert(Projects.Projects_Entry.TABLE_NAME, null, cv);
+
+        Log.d(TAG, "insertProject: ending");
+        return project_id;
+    }
+
+    public long insertNote(String title, String content, String directory_tag, String project_tag){
         Log.d(TAG, "insertData: starting");
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(Notes.NotesEntry.COLUMN_NOTES_TITLE, title);
         cv.put(Notes.NotesEntry.COLUMN_NOTES_CONTENT, content);
+        cv.put(Notes.NotesEntry.COLUMN_NOTES_DIRECTORY, directory_tag);
+        cv.put(Notes.NotesEntry.COLUMN_NOTES_PROJECT, project_tag);
+        cv.put(Notes.NotesEntry.COLUMN_TIMESTAMP, getDateTime());
 
-
-        Log.d(TAG, "insertData: before inserting content values into database");
-        db.insert(Notes.NotesEntry.TABLE_NAME, null, cv);
-        Log.d(TAG, "insertData: after inserting content values into database");
+        Log.d(TAG, "insertNote: before insertion");
+        long note_id = db.insert(Notes.NotesEntry.TABLE_NAME, null, cv);
 
         Log.d(TAG, "insertData: ending");
-        return true;
+        return note_id;
     }
 
 
@@ -159,5 +181,12 @@ public class Database extends SQLiteOpenHelper{
 
     public void deleteSingleProject(String id){
         SQLiteDatabase db = this.getWritableDatabase();
+    }
+
+    private String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

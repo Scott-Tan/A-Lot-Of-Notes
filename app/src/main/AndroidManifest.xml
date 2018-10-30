@@ -23,6 +23,7 @@
         <activity android:name=".AddNotes"></activity>
         <activity android:name=".TestPages"></activity>
         <activity android:name=".ShowNote"></activity>
+        <activity android:name=".AddDirectory"></activity>
     </application>
 
 </manifest>

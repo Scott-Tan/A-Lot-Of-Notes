@@ -14,7 +14,7 @@ public class Directories {
         public static String CREATE_DIRECTORIES_TABLE = "CREATE TABLE "
                 + Directories.Directories_Entry.TABLE_NAME + " ("
                 + Directories.Directories_Entry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " TEXT,"
+                + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " TEXT, "
                 + Directories.Directories_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
     }
 }
