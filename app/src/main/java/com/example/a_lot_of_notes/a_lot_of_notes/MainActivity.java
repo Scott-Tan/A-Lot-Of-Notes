@@ -1,7 +1,11 @@
 package com.example.a_lot_of_notes.a_lot_of_notes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -95,8 +99,26 @@ public class MainActivity extends AppCompatActivity
             Intent navToDirectories = new Intent(this, PageDirectories.class);
             startActivity(navToDirectories);
         }else if (id == R.id.nav_camera) {
-            // Handle the camera action
-            // take photo, save to gallery?
+            Log.d(TAG, ".onNavigationItemSelected: clicked nav_camera");
+            if(!this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+                //disable camera
+                AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+                a_builder.setMessage("No camera detected on this device")
+                        .setCancelable(false)
+                        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+                AlertDialog alert = a_builder.create();
+                alert.setTitle("Alert");
+                alert.show();
+            }
+            Log.d(TAG, ".onNavigationItemSelected: end if statement");
+            Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivity(i);
+            Log.d(TAG, ".onNavigationItemSelected: end nav_camera");
         } else if (id == R.id.nav_gallery) {
             // import photo from gallery to make a new post?
             // implementation may take place in
