@@ -49,7 +49,9 @@ public class AddNotes extends AppCompatActivity {
         String project_tag = "";
 
         Log.d(TAG, "save_notes: inserting notes to database");
-        db.insertNote(title, content, directory_tag, project_tag);
+        // Temporary
+//        db.insertNote(title, content, directory_tag, project_tag);
+        db.insertNote(title, content);
         db.close();
         Log.d(TAG, "save_notes: inserting done");
 
@@ -58,3 +60,4 @@ public class AddNotes extends AppCompatActivity {
 
     }
 }
+
