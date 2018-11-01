@@ -68,7 +68,7 @@ public class Database extends SQLiteOpenHelper{
         ContentValues cv = new ContentValues();
 
         cv.put(Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME, name);
-        cv.put(Directories.Directories_Entry.COLUMN_TIMESTAMP, getDateTime());
+//        cv.put(Directories.Directories_Entry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertDirectory: before insertion");
         long directory_id = db.insert(Directories.Directories_Entry.TABLE_NAME, null, cv);
@@ -93,16 +93,17 @@ public class Database extends SQLiteOpenHelper{
         return project_id;
     }
 
-    public long insertNote(String title, String content, String directory_tag, String project_tag){
+    public long insertNote(String title, String content){
+        // (String title, String content, String directory_tag, String project_tag)
         Log.d(TAG, "insertData: starting");
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(Notes.NotesEntry.COLUMN_NOTES_TITLE, title);
         cv.put(Notes.NotesEntry.COLUMN_NOTES_CONTENT, content);
-        cv.put(Notes.NotesEntry.COLUMN_NOTES_DIRECTORY, directory_tag);
-        cv.put(Notes.NotesEntry.COLUMN_NOTES_PROJECT, project_tag);
-        cv.put(Notes.NotesEntry.COLUMN_TIMESTAMP, getDateTime());
+//        cv.put(Notes.NotesEntry.COLUMN_NOTES_DIRECTORY, directory_tag);
+//        cv.put(Notes.NotesEntry.COLUMN_NOTES_PROJECT, project_tag);
+//        cv.put(Notes.NotesEntry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertNote: before insertion");
         long note_id = db.insert(Notes.NotesEntry.TABLE_NAME, null, cv);
@@ -110,7 +111,6 @@ public class Database extends SQLiteOpenHelper{
         Log.d(TAG, "insertData: ending");
         return note_id;
     }
-
 
     // A query to get all notes. May need separate queries to get notes in specific directory, or
     //  from a specific project.
@@ -164,17 +164,33 @@ public class Database extends SQLiteOpenHelper{
     // delete items
     // ...and?
 
-    public void deleteSingleDirectory(String id){
+    public void updateDirectoryName(String newName, String oldName){
+        SQLiteDatabase db =this.getWritableDatabase();
+        String query = "UPDATE " + Directories.Directories_Entry.TABLE_NAME
+                + " SET " + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME
+                + " = '" + newName + "' WHERE "
+                + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " = '"
+                + oldName + "'";
+        db.execSQL(query);
+    }
+
+    public void deleteSingleDirectory(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Directories.Directories_Entry.TABLE_NAME,
-                Directories.Directories_Entry._ID + "=?", new String[]{id});
-
+                Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME
+                        + " = ?", new String[]{name});
     }
 
     public void deleteAllNotes(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Notes.NotesEntry.TABLE_NAME, null, null);
     }
+    public void deleteDirectory(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + Directories.Directories_Entry.TABLE_NAME;
+        db.execSQL(query);
+    }
+
     public void deleteSingleNote(String id){
         SQLiteDatabase db = this.getWritableDatabase();
     }
