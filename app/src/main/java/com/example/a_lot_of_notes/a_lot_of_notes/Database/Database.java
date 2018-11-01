@@ -93,16 +93,15 @@ public class Database extends SQLiteOpenHelper{
         return project_id;
     }
 
-    public long insertNote(String title, String content){
-        // (String title, String content, String directory_tag, String project_tag)
+    public long insertNote(String title, String content, String directory_tag, String project_tag){
         Log.d(TAG, "insertData: starting");
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(Notes.NotesEntry.COLUMN_NOTES_TITLE, title);
         cv.put(Notes.NotesEntry.COLUMN_NOTES_CONTENT, content);
-//        cv.put(Notes.NotesEntry.COLUMN_NOTES_DIRECTORY, directory_tag);
-//        cv.put(Notes.NotesEntry.COLUMN_NOTES_PROJECT, project_tag);
+        cv.put(Notes.NotesEntry.COLUMN_NOTES_DIRECTORY, directory_tag);
+        cv.put(Notes.NotesEntry.COLUMN_NOTES_PROJECT, project_tag);
         cv.put(Notes.NotesEntry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertNote: before insertion");
