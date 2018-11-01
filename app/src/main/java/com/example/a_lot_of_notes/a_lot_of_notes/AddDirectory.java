@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
 
@@ -26,7 +27,7 @@ public class AddDirectory extends AppCompatActivity {
 
         db = new Database(this);
 
-        textView = findViewById(R.id.add_directory_textView);
+//        textView = findViewById(R.id.add_directory_textView);
         editText = findViewById(R.id.add_directory_editText);
         btn_save = findViewById(R.id.add_directory_save);
 
@@ -35,12 +36,13 @@ public class AddDirectory extends AppCompatActivity {
     public void save_directory(View view) {
         Log.d(TAG, "save_directory: starting");
 
-        String directory_name = editText.getText().toString();
+        String directoryName = editText.getText().toString();
 
         Log.d(TAG, "save_directory: before inserting directory");
-        db.insertDirectory(directory_name);
+        db.insertDirectory(directoryName);
         db.close();
-
+        Toast.makeText(AddDirectory.this,
+                "Saved", Toast.LENGTH_LONG).show();
         Log.d(TAG, "save_directory: ending");
         finish();
     }
