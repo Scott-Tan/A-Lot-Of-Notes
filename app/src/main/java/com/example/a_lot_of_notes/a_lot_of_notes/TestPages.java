@@ -104,12 +104,12 @@ public class TestPages extends AppCompatActivity {
     public void save(View view) {
         String s1 = noteTitle.getText().toString();
         String s2 = noteContent.getText().toString();
+
+        // do not remove, mimics actual operation
         String s3 = "";
         String s4 = "";
 
-        // Temporary
-//        db.insertNote(s1, s2, s3, s4);
-        db.insertNote(s1, s2);
+        db.insertNote(s1, s2, s3, s4);
 
         populateListView();
     }
