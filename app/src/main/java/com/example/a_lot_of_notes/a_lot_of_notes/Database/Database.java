@@ -68,7 +68,7 @@ public class Database extends SQLiteOpenHelper{
         ContentValues cv = new ContentValues();
 
         cv.put(Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME, name);
-//        cv.put(Directories.Directories_Entry.COLUMN_TIMESTAMP, getDateTime());
+        cv.put(Directories.Directories_Entry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertDirectory: before insertion");
         long directory_id = db.insert(Directories.Directories_Entry.TABLE_NAME, null, cv);
@@ -103,7 +103,7 @@ public class Database extends SQLiteOpenHelper{
         cv.put(Notes.NotesEntry.COLUMN_NOTES_CONTENT, content);
 //        cv.put(Notes.NotesEntry.COLUMN_NOTES_DIRECTORY, directory_tag);
 //        cv.put(Notes.NotesEntry.COLUMN_NOTES_PROJECT, project_tag);
-//        cv.put(Notes.NotesEntry.COLUMN_TIMESTAMP, getDateTime());
+        cv.put(Notes.NotesEntry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertNote: before insertion");
         long note_id = db.insert(Notes.NotesEntry.TABLE_NAME, null, cv);
@@ -144,6 +144,18 @@ public class Database extends SQLiteOpenHelper{
         Cursor data = db.rawQuery(query, null);
 
         Log.d(TAG, "getProjects: ending");
+        return data;
+    }
+
+    // define queries to get needs
+    public Cursor getProjectsFromDirectory(String directory_tag){
+        Log.d(TAG, "getProjectsFromDirectory: starting");
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + Projects.Projects_Entry.TABLE_NAME + " WHERE "
+                + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY + " LIKE " + directory_tag;
+        Cursor data = db.rawQuery(query, null);
+
+        Log.d(TAG, "getProjectsFromDirectory: ending");
         return data;
     }
 

@@ -21,10 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".PageDirectories"></activity>
+        <activity android:name=".PageProjects"></activity>
+        <activity android:name=".PageNotes"></activity>
         <activity android:name=".AddNotes"></activity>
         <activity android:name=".TestPages"></activity>
         <activity android:name=".ShowNote"></activity>
-        <activity android:name=".AddDirectory"></activity>
+
     </application>
 
 </manifest>
