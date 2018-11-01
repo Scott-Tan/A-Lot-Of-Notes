@@ -107,7 +107,9 @@ public class TestPages extends AppCompatActivity {
         String s3 = "";
         String s4 = "";
 
-        db.insertNote(s1, s2, s3, s4);
+        // Temporary
+//        db.insertNote(s1, s2, s3, s4);
+        db.insertNote(s1, s2);
 
         populateListView();
     }
@@ -125,3 +127,4 @@ public class TestPages extends AppCompatActivity {
 
 
 }
+
