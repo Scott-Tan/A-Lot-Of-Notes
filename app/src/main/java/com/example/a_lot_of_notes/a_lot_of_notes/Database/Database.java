@@ -15,6 +15,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
@@ -150,8 +151,9 @@ public class Database extends SQLiteOpenHelper{
     public Cursor getProjectsFromDirectory(String directory_tag){
         Log.d(TAG, "getProjectsFromDirectory: starting");
         SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT * FROM " + Projects.Projects_Entry.TABLE_NAME + " WHERE "
-                + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY + " LIKE " + directory_tag;
+        String query = "SELECT * FROM " + Projects.Projects_Entry.TABLE_NAME
+                + " WHERE "
+                + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY + " = '" + directory_tag + "'";
         Cursor data = db.rawQuery(query, null);
 
         Log.d(TAG, "getProjectsFromDirectory: ending");
@@ -159,16 +161,31 @@ public class Database extends SQLiteOpenHelper{
     }
 
     // define query to meet needs
-    public Cursor getNotesFromProject(){
-        Log.d(TAG, "getNotesFromProject: starting");
+    public Cursor getNotesByTags(String directory_tag, String project_tag){
+        Log.d(TAG, "getNotesByTags: starting");
         SQLiteDatabase db = getReadableDatabase();
-        String query = "";
-        Cursor data = db.rawQuery(query, null);
 
-        Log.d(TAG, "getNotesFromProject: ending");
+        String query = "SELECT * FROM " + Notes.NotesEntry.TABLE_NAME
+                + " WHERE "
+                + Notes.NotesEntry.COLUMN_NOTES_DIRECTORY + " = '" + directory_tag + "'"
+                + " AND "
+                + Notes.NotesEntry.COLUMN_NOTES_PROJECT + " = '" + project_tag + "'";
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "getNotesByTags: ending");
         return data;
     }
 
+    public Cursor getSingleNote(String id){
+        Log.d(TAG, "getSingleNote: starting");
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + Notes.NotesEntry.TABLE_NAME
+                + " WHERE "
+                + Notes.NotesEntry._ID + " = " + id;
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "getSingleNote: ending");
+        return data;
+    }
 
     // methods to implement:
     // update directories/note content

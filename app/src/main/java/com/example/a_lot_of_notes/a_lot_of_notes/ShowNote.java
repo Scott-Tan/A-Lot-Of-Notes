@@ -12,18 +12,16 @@ import android.widget.TextView;
 //  This will allow for us to separate parts of a note (title, content, etc) and let us implement
 //   an edit feature.
 public class ShowNote extends AppCompatActivity {
-    TextView textView;
+    TextView textView_title;
+    TextView textView_body;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_note);
+        setContentView(R.layout.add_notes);
 
-        textView = findViewById(R.id.show_notes_textview);
-        Intent intent = getIntent();
+        textView_title = findViewById(R.id.input_notes_textview_title);
+        textView_body = findViewById(R.id.input_notes_textview_content);
 
-        String note = intent.getStringExtra("Note");
-
-        textView.setText(note);
     }
 }

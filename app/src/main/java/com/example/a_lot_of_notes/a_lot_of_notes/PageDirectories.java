@@ -72,7 +72,6 @@ public class PageDirectories extends AppCompatActivity
                                 String directory_name = userInput.getText().toString();
                                 Log.d(TAG, "onClick: before insertDirectory");
                                 db.insertDirectory(directory_name);
-                                db.close();
                                 populateDirectoryList();
                             }
                         })
@@ -91,12 +90,14 @@ public class PageDirectories extends AppCompatActivity
         listDirectory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d(TAG, "onItemClick: starting");
                 Toast.makeText(ctx,
                         "This is directory " + directoryData.get(i) + ". Lead this to projects" +
                                 " with the directory tag.",
                         Toast.LENGTH_LONG).show();
                 Log.d(TAG, "onItemClick: after toast");
                 directoryPath = directoryData.get(i);
+                Log.d(TAG, "onItemClick: ending");
                 Intent navToProjects = new Intent(ctx, PageProjects.class);
                 startActivity(navToProjects);
 
@@ -111,23 +112,23 @@ public class PageDirectories extends AppCompatActivity
 
 
     private void populateDirectoryList(){
-        Log.d(TAG, "populateListView: starting");
+        Log.d(TAG, "populateDirectoryList: starting");
 
         Cursor directoryCursor = db.getAllDirectories();
         directoryData = new ArrayList<>();
 
-        Log.d(TAG, "populateListView: before loop");
+        Log.d(TAG, "populateDirectoryList: before loop");
         while(directoryCursor.moveToNext()){
             String directoryName = directoryCursor.getString(1);
 
             directoryData.add(directoryName);
         }
-        Log.d(TAG, "populateListView: end of loop");
+        Log.d(TAG, "populateDirectoryList: after loop");
         ListAdapter adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, directoryData);
         listDirectory.setAdapter(adapter);
 
-        Log.d(TAG, "populateListView: ending");
+        Log.d(TAG, "populateDirectoryList: ending");
     }
 
     @Override

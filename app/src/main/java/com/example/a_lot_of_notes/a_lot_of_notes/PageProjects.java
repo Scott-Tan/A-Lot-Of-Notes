@@ -68,7 +68,6 @@ public class PageProjects extends AppCompatActivity {
                                 String project_name = userInput.getText().toString();
                                 Log.d(TAG, "onClick: before insertDirectory");
                                 db.insertProject(project_name, PageDirectories.directoryPath);
-                                db.close();
                                 populateListView();
                             }
                         })
@@ -95,8 +94,8 @@ public class PageProjects extends AppCompatActivity {
                 projectPath = listData.get(i);
                 PageDirectories.directoryPath = directoryData.get(i);
 
-                Intent navToNotes = new Intent(ctx, PageNotes.class);
-                startActivity(navToNotes);
+                Intent navToPageNotes = new Intent(ctx, PageNotes.class);
+                startActivity(navToPageNotes);
 
             }
         });
