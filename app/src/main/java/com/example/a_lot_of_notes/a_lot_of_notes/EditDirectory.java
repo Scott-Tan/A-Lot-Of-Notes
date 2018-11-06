@@ -28,12 +28,14 @@ public class EditDirectory extends AppCompatDialogFragment {
         editDirName = view.findViewById(R.id.edit_directory);
 
         Bundle bundle = getArguments();
-        final String oldDirName = bundle.getString("oldName");
+        final String oldName = bundle.getString("oldName");
+        final String page = bundle.getString("page");
 
-        editDirName.setText(oldDirName);
+        editDirName.setText(oldName);
+        editDirName.setSelection(oldName.length());
 
         builder.setView(view)
-                .setTitle("Edit Directory")
+                .setTitle("Edit " + page)
                 .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -43,8 +45,8 @@ public class EditDirectory extends AppCompatDialogFragment {
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String newDirName = editDirName.getText().toString();
-                        listener.updateName(newDirName, oldDirName);
+                        String newName = editDirName.getText().toString();
+                        listener.updateName(newName, oldName);
                     }
                 });
 
