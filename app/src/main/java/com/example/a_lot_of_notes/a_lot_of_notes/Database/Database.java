@@ -202,6 +202,18 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL(query);
     }
 
+    public void updateProjectName(String newName, String oldName, String directory_tag){
+        SQLiteDatabase db =this.getWritableDatabase();
+        String query = "UPDATE " + Projects.Projects_Entry.TABLE_NAME
+                + " SET " + Projects.Projects_Entry.COLUMN_PROJECTS_NAME
+                + " = '" + newName + "' WHERE "
+                + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY + " = '"
+                + directory_tag + "' AND "
+                + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " = '"
+                + oldName + "'";
+        db.execSQL(query);
+    }
+
     public void deleteSingleDirectory(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Directories.Directories_Entry.TABLE_NAME,
@@ -223,8 +235,13 @@ public class Database extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
-    public void deleteSingleProject(String id){
+    public void deleteSingleProject(String name, String directory_tag){
         SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Projects.Projects_Entry.TABLE_NAME,
+                Projects.Projects_Entry.COLUMN_PROJECTS_NAME
+                        + " = ? AND "
+                        + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY
+                        + " = ?", new String[]{name, directory_tag});
     }
 
     private String getDateTime() {
