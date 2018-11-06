@@ -35,6 +35,7 @@
         android:id="@+id/input_notes_content"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:gravity="top|left"
         android:hint="Add your note..."
         android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
         android:paddingLeft="5dp" />
