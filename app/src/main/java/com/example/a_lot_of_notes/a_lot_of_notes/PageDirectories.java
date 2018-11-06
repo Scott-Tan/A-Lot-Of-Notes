@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
@@ -30,11 +31,11 @@ public class PageDirectories extends AppCompatActivity
 
     private static final String TAG = "PageDirectories";
     static String directoryPath = "";
+    String newDirName;
     Context ctx;
     Database db;
     ListView listDirectory;
     ArrayList<String> directoryData;
-    String newDirName;
     FloatingActionButton fab;
 
     @Override
@@ -63,6 +64,8 @@ public class PageDirectories extends AppCompatActivity
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(ctx);
                 alertDialog.setView(mView);
                 final EditText userInput = mView.findViewById(R.id.userInputDialog);
+                TextView dialogTitle = mView.findViewById(R.id.dialogTitle);
+                dialogTitle.setText("Create a new directory:");
                 Log.d(TAG, "onClick: fab before alertdialog");
                 alertDialog
                         .setCancelable(false)
@@ -109,7 +112,6 @@ public class PageDirectories extends AppCompatActivity
 
         Log.d(TAG, "onCreate: ending");
     }
-
 
     private void populateDirectoryList(){
         Log.d(TAG, "populateDirectoryList: starting");
@@ -163,6 +165,7 @@ public class PageDirectories extends AppCompatActivity
     public void openEditDir(String oldName){
         EditDirectory editDirectory = new EditDirectory();
         Bundle bundle = new Bundle();
+        bundle.putString("page", "Directory");
         bundle.putString("oldName", oldName);
         editDirectory.setArguments(bundle);
         editDirectory.show(getSupportFragmentManager(), "edit directory");
@@ -178,7 +181,7 @@ public class PageDirectories extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int id) {
                         db.deleteSingleDirectory(dirName);
                         Toast.makeText(PageDirectories.this, "Delete", Toast.LENGTH_LONG).show();
-                        finish();
+                        populateDirectoryList();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -195,7 +198,6 @@ public class PageDirectories extends AppCompatActivity
         newDirName = newName;
         db.updateDirectoryName(newDirName, oldName);
         Toast.makeText(PageDirectories.this, "Updated" , Toast.LENGTH_LONG).show();
-        finish();
+        populateDirectoryList();
     }
-
 }
