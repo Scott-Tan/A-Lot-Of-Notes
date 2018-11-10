@@ -18,5 +18,7 @@ public class Projects {
                 + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " TEXT, "
                 + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY + " TEXT, "
                 + Projects.Projects_Entry.COLUMN_TIMESTAMP + " DATETIME" + ")";
+
+
     }
 }

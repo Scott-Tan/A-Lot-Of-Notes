@@ -175,15 +175,15 @@ public class Database extends SQLiteOpenHelper{
         return data;
     }
 
-    public Cursor getSingleNote(String id){
-        Log.d(TAG, "getSingleNote: starting");
+    public Cursor getNote(String id){
+        Log.d(TAG, "getNote: starting");
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT * FROM " + Notes.NotesEntry.TABLE_NAME
                 + " WHERE "
-                + Notes.NotesEntry._ID + " = " + id;
+                + Notes.NotesEntry._ID + " = '" + id + "'";
         Cursor data = db.rawQuery(query, null);
-        Log.d(TAG, "getSingleNote: ending");
+        Log.d(TAG, "getNote: ending");
         return data;
     }
 
@@ -212,6 +212,23 @@ public class Database extends SQLiteOpenHelper{
                 + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " = '"
                 + oldName + "'";
         db.execSQL(query);
+    }
+
+    public void updateNote(String title, String content, String id){
+        Log.d(TAG, "updateNote: starting");
+        Log.d(TAG, "updateNote: title is: " + title);
+        Log.d(TAG, "updateNote: content is: " + content);
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + Notes.NotesEntry.TABLE_NAME
+                + " SET " + Notes.NotesEntry.COLUMN_NOTES_TITLE
+                + " = '" + title + "', "
+                + Notes.NotesEntry.COLUMN_NOTES_CONTENT
+                + " = '" + content + "'"
+                + " WHERE " + Notes.NotesEntry._ID
+                + " = '" + id + "'";
+        db.execSQL(query);
+
+        Log.d(TAG, "updateNote: ending");
     }
 
     public void deleteSingleDirectory(String name){

@@ -19,19 +19,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
-    Button navToTestPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        navToTestPage = findViewById(R.id.main_navTestPage);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,6 +79,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "No action", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -119,17 +118,10 @@ public class MainActivity extends AppCompatActivity
             Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivity(i);
             Log.d(TAG, ".onNavigationItemSelected: end nav_camera");
-        } else if (id == R.id.nav_gallery) {
-            // import photo from gallery to make a new post?
-            // implementation may take place in
-        } else if (id == R.id.nav_slideshow) {
-            // possibly remove, default option
-        } else if (id == R.id.nav_manage) {
-            // possibly remove, default option
-        } else if (id == R.id.nav_share) {
-            // possibly remove, default option
-        } else if (id == R.id.nav_send) {
-            // possibly remove, default option
+        } else if (id == R.id.dev_page) {
+            // Navigate to dev page options in navigation menu
+            Intent intent = new Intent(this, TestPages.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -137,9 +129,4 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-    public void navTestPage(View view) {
-        Intent intent = new Intent(this, TestPages.class);
-        startActivity(intent);
-    }
 }

@@ -30,11 +30,11 @@ public class AddNotes extends AppCompatActivity {
 
         db = new Database(this);
 
-        textView_title = findViewById(R.id.input_notes_textview_title);
-        textView_content = findViewById(R.id.input_notes_textview_content);
-        editText_title = findViewById(R.id.input_notes_title);
-        editText_content = findViewById(R.id.input_notes_content);
-        btn_save = findViewById(R.id.input_notes_save);
+        textView_title = findViewById(R.id.textView_notes_title);
+        textView_content = findViewById(R.id.textView_notes_content);
+        editText_title = findViewById(R.id.editText_notes_title);
+        editText_content = findViewById(R.id.editText_notes_content);
+        btn_save = findViewById(R.id.button_notes_save);
 
         Log.d(TAG, "onCreate: ending");
     }

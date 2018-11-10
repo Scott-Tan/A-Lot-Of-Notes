@@ -14,30 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
+        android:layout_marginTop="184dp"
         android:layout_marginEnd="54dp"
+        android:layout_marginBottom="295dp"
         android:layout_weight="1"
-        android:text="This is the launch page. Use for development purposes...."
+        android:text="Hello World!"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/main_navTestPage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/main_navTestPage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="348dp"
-        android:layout_weight="1"
-        android:onClick="navTestPage"
-        android:text="to TestPage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content_main_textview" />
 
 </android.support.constraint.ConstraintLayout>
