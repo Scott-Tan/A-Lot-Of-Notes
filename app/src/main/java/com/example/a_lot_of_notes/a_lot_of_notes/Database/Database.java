@@ -19,6 +19,7 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Image;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
 
@@ -50,6 +51,7 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL(Directories.Directories_Entry.CREATE_DIRECTORIES_TABLE);
         db.execSQL(Projects.Projects_Entry.CREATE_PROJECTS_TABLE);
         db.execSQL(Notes.NotesEntry.CREATE_NOTES_TABLE);
+        db.execSQL(Image.ImageEntry.CREATE_IMAGE_TABLE);
 
         Log.d(TAG, "onCreate: ending database creation");
     }
@@ -59,6 +61,7 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL("drop table if exists " + Directories.Directories_Entry.TABLE_NAME);
         db.execSQL("drop table if exists " + Projects.Projects_Entry.TABLE_NAME);
         db.execSQL("drop table if exists " + Notes.NotesEntry.TABLE_NAME);
+        db.execSQL("drop table if exists " + Image.ImageEntry.TABLE_NAME);
 
         onCreate(db);
     }
@@ -112,18 +115,22 @@ public class Database extends SQLiteOpenHelper{
         return note_id;
     }
 
-    // A query to get all notes. May need separate queries to get notes in specific directory, or
-    //  from a specific project.
-    public Cursor getAllNotes(){
-        Log.d(TAG, "getAllNotes: starting");
-        SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT * FROM " + Notes.NotesEntry.TABLE_NAME;
-        Cursor data = db.rawQuery(query, null);
+    public long insertImage(String title, String path, String directory_tag, String project_tag){
+        Log.d(TAG, "insertImagePath: starting");
 
-        Log.d(TAG, "getAllNotes: ending");
-        return data;
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(Image.ImageEntry.COLUMN_IMAGE_TITLE, title);
+        cv.put(Image.ImageEntry.COLUMN_IMAGE_PATH, path);
+        cv.put(Image.ImageEntry.COLUMN_IMAGE_DIRECTORY, directory_tag);
+        cv.put(Image.ImageEntry.COLUMN_IMAGE_PROJECT, project_tag);
+
+        Log.d(TAG, "insertImagePath: inserting");
+        long image_id = db.insert(Image.ImageEntry.TABLE_NAME, null, cv);
+        Log.d(TAG, "insertImagePath: ending");
+        return image_id;
     }
-
 
     // define queries to get needs
     public Cursor getAllDirectories(){
@@ -144,6 +151,30 @@ public class Database extends SQLiteOpenHelper{
         Cursor data = db.rawQuery(query, null);
 
         Log.d(TAG, "getProjects: ending");
+        return data;
+    }
+
+    // A query to get all notes. May need separate queries to get notes in specific directory, or
+    //  from a specific project.
+    public Cursor getAllNotes(){
+        Log.d(TAG, "getAllNotes: starting");
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + Notes.NotesEntry.TABLE_NAME;
+        Cursor data = db.rawQuery(query, null);
+
+        Log.d(TAG, "getAllNotes: ending");
+        return data;
+    }
+
+    public Cursor getAllImages(){
+        Log.d(TAG, "getAllImages: starting");
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + Image.ImageEntry.TABLE_NAME;
+
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "getAllImages: ending");
+
         return data;
     }
 
@@ -259,6 +290,19 @@ public class Database extends SQLiteOpenHelper{
                         + " = ? AND "
                         + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY
                         + " = ?", new String[]{name, directory_tag});
+    }
+
+    // Be sure to delete file in internal storage and from database
+    public int deleteImageById(String id){
+        Log.d(TAG, "deleteImageById: starting id is: " + id);
+
+        SQLiteDatabase db = getWritableDatabase();
+        int data = db.delete(Image.ImageEntry.TABLE_NAME,
+                Image.ImageEntry._ID + "=?",
+                new String[]{id});
+
+        Log.d(TAG, "deleteImageById: ending");
+        return data;
     }
 
     private String getDateTime() {

@@ -3,6 +3,7 @@
     package="com.example.a_lot_of_notes.a_lot_of_notes">
 
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,9 +25,11 @@
         <activity android:name=".PageProjects"></activity>
         <activity android:name=".PageNotes"></activity>
         <activity android:name=".AddNotes"></activity>
-        <activity android:name=".TestPages"></activity>
         <activity android:name=".ShowNote"></activity>
+        <activity android:name=".ShowImage"></activity>
 
+        <activity android:name=".TestPages"></activity>
+        <activity android:name=".TestImage"></activity>
     </application>
 
 </manifest>

@@ -2,7 +2,6 @@ package com.example.a_lot_of_notes.a_lot_of_notes;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,22 +9,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,20 +29,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PageNotes extends AppCompatActivity {
-    private static final String TAG = "PageNotes";
-    private static final int GALLERY_RESULT= 1;
-    private int NUMBER_OF_IMAGES = 0;
+import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
+import com.example.a_lot_of_notes.a_lot_of_notes.adapters.RecyclerViewAdapter;
 
-    private String directory_path_copy;
-    private String project_path_copy;
-    static String noteIdPath = "";
-    static String imagePath = "";
-    Context ctx;
-    FloatingActionButton fab;
-    Database db;
+public class TestImage extends AppCompatActivity {
+    private static final String TAG = "TestImage";
+    private static final int GALLERY_RESULT = 1;
 
-    // Someone please change this into a multi dimensional array. This is awful :[
+    private Database db;
+    private Context ctx;
+    ImageView imageView;
+    Button btn_save, btn_delete;
+
+    //RecyclerView recyclerView;
     ArrayList<String> allData;
     ArrayList<String> imageIdData;
     ArrayList<String> imagePathData;
@@ -55,53 +50,28 @@ public class PageNotes extends AppCompatActivity {
     ArrayList<String> note_data;
     ListView listNote;
 
+    private int image_item_size;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page);
-        setTitle("Notes in " + PageProjects.projectPath + "...");
-        ctx = this;
-        db = new Database(this);
+        setContentView(R.layout.test_image);
 
-        fab = findViewById(R.id.page_fab);
+        Log.d(TAG, "onCreate: starting");
+        db = new Database(this);
+        ctx = this;
+
+        imageView = findViewById(R.id.imageView_show_image);
+        btn_save = findViewById(R.id.button_test_image_save);
+        btn_delete = findViewById(R.id.button_test_image_delete);
         listNote = findViewById(R.id.list_view);
 
-        populateList();
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addNotes = new Intent(ctx, AddNotes.class);
-                startActivity(addNotes);
-            }
-        });
-
-        listNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ctx,
-                        "This is note id " + allData.get(i) + ". Lead this to a page" +
-                                " that shows the note with an edit/save/delete option.",
-                        Toast.LENGTH_LONG).show();
-                if(i > NUMBER_OF_IMAGES){
-                    noteIdPath = allData.get(i);
-                    Intent openNote = new Intent(ctx, ShowNote.class);
-                    startActivity(openNote);
-                }else{
-                    imagePath = imagePathData.get(i);
-                    Intent openImage = new Intent(ctx, ShowImage.class);
-                    startActivity(openImage);
-                }
-
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        //recyclerView = findViewById(R.id.recycler_view);
         populateList();
     }
+
+    // Get the string representation of all the titles and ids of each image.
+    // Make each set of strings their own item
 
     private void populateList(){
         Log.d(TAG, "populateNoteList: starting");
@@ -130,8 +100,8 @@ public class PageNotes extends AppCompatActivity {
             imageData.add(image_id + "\n" + image_path);
         }
 
-        NUMBER_OF_IMAGES = imageData.size();
-        Log.d(TAG, "populateList: amount of image: " + NUMBER_OF_IMAGES);
+        image_item_size = imageData.size();
+        Log.d(TAG, "populateList: amount of image: " + image_item_size);
 
         while(noteCursor.moveToNext()){
             String note_id = noteCursor.getString(0);
@@ -152,10 +122,6 @@ public class PageNotes extends AppCompatActivity {
 
         Log.d(TAG, "populateNoteList: ending");
     }
-
-    /*
-    * Menu operations below
-    * */
 
     // Inflate the menu; this adds items to the action bar if it is present.
     @Override
@@ -203,9 +169,8 @@ public class PageNotes extends AppCompatActivity {
                 case GALLERY_RESULT:
                     Uri selectedImage = data.getData();
                     try {
-                        Toast.makeText(ctx, "Image was saved to storage and database!",
-                                Toast.LENGTH_SHORT).show();
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                        imageView.setImageBitmap(bitmap);
                         saveImageToInternalStorage(bitmap, "testTitle");
                     } catch (IOException e) {
                         Log.d(TAG, "onActivityResult: IOException e");
@@ -240,8 +205,12 @@ public class PageNotes extends AppCompatActivity {
         Log.d(TAG, "saveImageToDatabase: starting");
         Log.d(TAG, "saveImageToDatabase: title is: " + title);
         Log.d(TAG, "saveImageToDatabase: image_path is: " + image_path);
-        db.insertImage(title, image_path, PageDirectories.directoryPath, PageProjects.projectPath);
+        db.insertImage(title, image_path, "dummy_directory_tag", "dummy_project_tag");
         Log.d(TAG, "saveImageToDatabase: ending");
+
+    }
+
+    public void delete(View view) {
 
     }
 }

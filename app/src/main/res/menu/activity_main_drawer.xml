@@ -11,15 +11,19 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Take Photo" />
+            android:title="Camera" />
     </group>
 
     <item android:title="DevTools">
         <menu>
             <item
-                android:id="@+id/dev_page"
+                android:id="@+id/dev_note_page"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Navigate To DevPage" />
+                android:title="Navigate To Note DevPage" />
+            <item
+                android:id="@+id/dev_image_page"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Navigate To Image DevPage" />
         </menu>
     </item>
 

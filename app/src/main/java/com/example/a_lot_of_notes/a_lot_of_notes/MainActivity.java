@@ -118,9 +118,13 @@ public class MainActivity extends AppCompatActivity
             Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivity(i);
             Log.d(TAG, ".onNavigationItemSelected: end nav_camera");
-        } else if (id == R.id.dev_page) {
+        } else if (id == R.id.dev_note_page) {
             // Navigate to dev page options in navigation menu
             Intent intent = new Intent(this, TestPages.class);
+            startActivity(intent);
+        } else if (id == R.id.dev_image_page) {
+            // Navigate to image testing page in navigation menu
+            Intent intent = new Intent(this, TestImage.class);
             startActivity(intent);
         }
 
