@@ -48,17 +48,23 @@ public class ShowNote extends AppCompatActivity {
 
         note_id_path_copy = PageNotes.noteIdPath;
 
-        Log.d(TAG, "onCreate: before db call");
+        Log.d(TAG, "onCreate: before db call, note id: " + note_id_path_copy);
         loadNoteFromDatabase(note_id_path_copy);
 
     }
 
-    private void loadNoteFromDatabase(String note_path_copy) {
+    private void loadNoteFromDatabase(String note_id) {
         Log.d(TAG, "loadNoteFromDatabase: starting");
-        Cursor noteItem = db.getNote(note_path_copy);
-        noteItem.moveToNext();
-        title = noteItem.getString(noteItem.getColumnIndex(Notes.NotesEntry.COLUMN_NOTES_TITLE));
-        content = noteItem.getString(noteItem.getColumnIndex(Notes.NotesEntry.COLUMN_NOTES_CONTENT));
+        Cursor noteItem = db.getNote(note_id);
+
+        Log.d(TAG, "loadNoteFromDatabase: before loop");
+
+        while(noteItem.moveToNext()){
+            Log.d(TAG, "loadNoteFromDatabase: inside loop");
+            title = noteItem.getString(noteItem.getColumnIndex(Notes.NotesEntry.COLUMN_NOTES_TITLE));
+            content = noteItem.getString(noteItem.getColumnIndex(Notes.NotesEntry.COLUMN_NOTES_CONTENT));
+        }
+
 
         Log.d(TAG, "loadNoteFromDatabase: before setting");
         editText_title.setText(title);

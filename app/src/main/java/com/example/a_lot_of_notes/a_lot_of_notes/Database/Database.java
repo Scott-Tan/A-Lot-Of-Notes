@@ -206,6 +206,21 @@ public class Database extends SQLiteOpenHelper{
         return data;
     }
 
+    // define query to meet needs
+    public Cursor getImageByTags(String directory_tag, String project_tag){
+        Log.d(TAG, "getImageByTags: starting");
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + Image.ImageEntry.TABLE_NAME
+                + " WHERE "
+                + Image.ImageEntry.COLUMN_IMAGE_DIRECTORY + " = '" + directory_tag + "'"
+                + " AND "
+                + Image.ImageEntry.COLUMN_IMAGE_PROJECT + " = '" + project_tag + "'";
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "getImageByTags: ending");
+        return data;
+    }
+
     public Cursor getNote(String id){
         Log.d(TAG, "getNote: starting");
         SQLiteDatabase db = getReadableDatabase();

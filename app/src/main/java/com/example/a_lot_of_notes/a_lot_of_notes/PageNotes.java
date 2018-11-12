@@ -26,6 +26,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,14 +81,19 @@ public class PageNotes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ctx,
-                        "This is note id " + allData.get(i) + ". Lead this to a page" +
+                        "This is item " + allData.get(i) + ". Lead this to a page" +
                                 " that shows the note with an edit/save/delete option.",
                         Toast.LENGTH_LONG).show();
-                if(i > NUMBER_OF_IMAGES){
-                    noteIdPath = allData.get(i);
+                if(i >= NUMBER_OF_IMAGES){
+                    Log.d(TAG, "onItemClick: num images = " + NUMBER_OF_IMAGES);
+                    Log.d(TAG, "onItemClick: i = " + i);
+                    Log.d(TAG, "onItemClick: size of noteIdData " + noteIdData.size());
+
+                    noteIdPath = noteIdData.get(i - NUMBER_OF_IMAGES);
                     Intent openNote = new Intent(ctx, ShowNote.class);
                     startActivity(openNote);
                 }else{
+                    Log.d(TAG, "onItemClick: i = " + i);
                     imagePath = imagePathData.get(i);
                     Intent openImage = new Intent(ctx, ShowImage.class);
                     startActivity(openImage);
@@ -109,9 +115,9 @@ public class PageNotes extends AppCompatActivity {
                 + PageProjects.projectPath);
 
         Cursor noteCursor =
-                db.getAllNotes();
+                db.getNotesByTags(PageDirectories.directoryPath, PageProjects.projectPath);
         Cursor imageCursor =
-                db.getAllImages();
+                db.getImageByTags(PageDirectories.directoryPath, PageProjects.projectPath);
 
         allData = new ArrayList<>();
         imageIdData = new ArrayList<>();
