@@ -37,7 +37,7 @@ public class PageProjects extends AppCompatActivity
     String dirPath, newProjName;
     Context ctx;
     Database db;
-    private ListView mListView;
+    private ListView listProject;
     FloatingActionButton fab;
     ArrayList<String> listData;
     ArrayList<String> directoryData;
@@ -52,10 +52,10 @@ public class PageProjects extends AppCompatActivity
         Log.d(TAG, "onCreate: starting");
         ctx = this;
         db = new Database(this);
-        mListView = findViewById(R.id.list_view);
+        listProject = findViewById(R.id.list_view);
         fab = findViewById(R.id.page_fab);
 
-        populateListView();
+        populateProjectList();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,7 @@ public class PageProjects extends AppCompatActivity
                                 String project_name = userInput.getText().toString();
                                 Log.d(TAG, "onClick: before insertDirectory");
                                 db.insertProject(project_name, dirPath);
-                                populateListView();
+                                populateProjectList();
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -92,7 +92,7 @@ public class PageProjects extends AppCompatActivity
         });
 
         // Clicking on an item will bring up the projects tagged with the directory
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listProject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ctx,
@@ -109,8 +109,8 @@ public class PageProjects extends AppCompatActivity
             }
         });
 
-        // Long press on listDirectory item will show context menu to edit/delete selected directory
-        registerForContextMenu(mListView);
+        // Long press on listProject item will show context menu to edit/delete selected directory
+        registerForContextMenu(listProject);
 
         Log.d(TAG, "onCreate: ending");
     }
@@ -140,27 +140,27 @@ public class PageProjects extends AppCompatActivity
 
     // populate list view with projects
     // projects should be clickable and show image/file and the associated notes
-    private void populateListView(){
-        Log.d(TAG, "populateListView: starting");
+    private void populateProjectList(){
+        Log.d(TAG, "populateProjectList: starting");
 
         Cursor data = db.getProjectsFromDirectory(dirPath);
         listData = new ArrayList<>();
         directoryData = new ArrayList<>();
 
-        Log.d(TAG, "populateListView: before loop");
+        Log.d(TAG, "populateProjectList: before loop");
         while(data.moveToNext()){
             // index 1 should be project name column
             listData.add(data.getString(1));
             // indexx 2 should be the directory tag column
             directoryData.add(data.getString(2));
         }
-        Log.d(TAG, "populateListView: end of loop");
+        Log.d(TAG, "populateProjectList: end of loop");
 
         ListAdapter adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, listData);
-        mListView.setAdapter(adapter);
+        listProject.setAdapter(adapter);
 
-        Log.d(TAG, "populateListView: ending");
+        Log.d(TAG, "populateProjectList: ending");
     }
 
     @Override
@@ -178,7 +178,7 @@ public class PageProjects extends AppCompatActivity
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         final int index = info.position;
-        final String name = mListView.getItemAtPosition(index).toString();
+        final String name = listProject.getItemAtPosition(index).toString();
 
         if (item.getTitle() == "Edit") {
             // Open dialog for edit
@@ -210,8 +210,8 @@ public class PageProjects extends AppCompatActivity
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         db.deleteSingleProject(projName,dirPath);
-                        Toast.makeText(PageProjects.this, "Delete", Toast.LENGTH_LONG).show();
-                        populateListView();
+                        Toast.makeText(PageProjects.this, "Deleted", Toast.LENGTH_LONG).show();
+                        populateProjectList();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -228,7 +228,7 @@ public class PageProjects extends AppCompatActivity
         newProjName = newName;
         db.updateProjectName(newProjName, oldName, dirPath);
         Toast.makeText(PageProjects.this, "Updated" , Toast.LENGTH_LONG).show();
-        populateListView();
+        populateProjectList();
     }
 
 }
