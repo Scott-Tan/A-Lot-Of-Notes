@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
 
 import java.io.File;
@@ -39,8 +41,7 @@ public class PageNotes extends AppCompatActivity {
     private static final int GALLERY_RESULT= 1;
     private int NUMBER_OF_IMAGES = 0;
 
-    private String directory_path_copy;
-    private String project_path_copy;
+    private String dirPath, projPath;
     static String noteIdPath = "";
     static String imagePath = "";
     Context ctx;
@@ -60,14 +61,18 @@ public class PageNotes extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page);
-        setTitle("Notes in " + PageProjects.projectPath + "...");
+
+        dirPath = PageDirectories.directoryPath;
+        projPath = PageProjects.projectPath;
+
+        setTitle("Notes in " + projPath + "...");
         ctx = this;
         db = new Database(this);
 
         fab = findViewById(R.id.page_fab);
         listNote = findViewById(R.id.list_view);
 
-        populateList();
+        populateNoteList();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,23 +106,26 @@ public class PageNotes extends AppCompatActivity {
 
             }
         });
+
+        // Long press on listDirectory item will show context menu to edit/delete selected directory
+        registerForContextMenu(listNote);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        populateList();
+        populateNoteList();
     }
 
-    private void populateList(){
+    private void populateNoteList(){
         Log.d(TAG, "populateNoteList: starting");
-        Log.d(TAG, "populateNoteList: " + PageDirectories.directoryPath + ", "
-                + PageProjects.projectPath);
+        Log.d(TAG, "populateNoteList: " + dirPath + ", "
+                + projPath);
 
         Cursor noteCursor =
-                db.getNotesByTags(PageDirectories.directoryPath, PageProjects.projectPath);
+                db.getNotesByTags(dirPath, projPath);
         Cursor imageCursor =
-                db.getImageByTags(PageDirectories.directoryPath, PageProjects.projectPath);
+                db.getImageByTags(dirPath, projPath);
 
         allData = new ArrayList<>();
         imageIdData = new ArrayList<>();
@@ -137,13 +145,14 @@ public class PageNotes extends AppCompatActivity {
         }
 
         NUMBER_OF_IMAGES = imageData.size();
-        Log.d(TAG, "populateList: amount of image: " + NUMBER_OF_IMAGES);
+        Log.d(TAG, "populateNoteList: amount of image: " + NUMBER_OF_IMAGES);
 
         while(noteCursor.moveToNext()){
             String note_id = noteCursor.getString(0);
             String note_title = noteCursor.getString(3);
 
-            note_data.add(note_title + "\n" + note_id);
+            note_data.add(note_title);
+//            note_data.add(note_title + "\n" + note_id);
             noteIdData.add(note_id);
         }
         Log.d(TAG, "populateNoteList: after loop");
@@ -246,8 +255,63 @@ public class PageNotes extends AppCompatActivity {
         Log.d(TAG, "saveImageToDatabase: starting");
         Log.d(TAG, "saveImageToDatabase: title is: " + title);
         Log.d(TAG, "saveImageToDatabase: image_path is: " + image_path);
-        db.insertImage(title, image_path, PageDirectories.directoryPath, PageProjects.projectPath);
+        db.insertImage(title, image_path, dirPath, projPath);
         Log.d(TAG, "saveImageToDatabase: ending");
 
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Options");
+        menu.add(0, v.getId(), 0, "Edit");
+        menu.add(0, v.getId(), 0, "Delete");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        final int index = info.position;
+        final String name = listNote.getItemAtPosition(index).toString();
+
+        if (item.getTitle() == "Edit") {
+            // Open AddNotes class to edit notes
+            openEditNote();
+        }
+        else if (item.getTitle() == "Delete") {
+            // Confirmation Dialog
+            deleteNoteAlert(name);
+        }
+        return true;
+    }
+
+    // Helper: Edit Project
+    public void openEditNote(){
+
+    }
+
+    // Helper: Delete Project Alert Box
+    public void deleteNoteAlert(final String noteName){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation");
+        builder.setMessage("Are you sure you want to delete note?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db.deleteSingleNote(noteName,dirPath,projPath);
+                        Toast.makeText(PageNotes.this, "Deleted", Toast.LENGTH_LONG).show();
+                        populateNoteList();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
