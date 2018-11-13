@@ -204,7 +204,7 @@ public class PageDirectories extends AppCompatActivity
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         db.deleteSingleDirectory(dirName);
-                        Toast.makeText(PageDirectories.this, "Delete", Toast.LENGTH_LONG).show();
+                        Toast.makeText(PageDirectories.this, "Deleted", Toast.LENGTH_LONG).show();
                         populateDirectoryList();
                     }
                 })
@@ -224,6 +224,5 @@ public class PageDirectories extends AppCompatActivity
         Toast.makeText(PageDirectories.this, "Updated" , Toast.LENGTH_LONG).show();
         populateDirectoryList();
     }
-
-
+    
 }
