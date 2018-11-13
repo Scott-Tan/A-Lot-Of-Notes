@@ -284,20 +284,6 @@ public class Database extends SQLiteOpenHelper{
                         + " = ?", new String[]{name});
     }
 
-    public void deleteAllNotes(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Notes.NotesEntry.TABLE_NAME, null, null);
-    }
-    public void deleteDirectory(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + Directories.Directories_Entry.TABLE_NAME;
-        db.execSQL(query);
-    }
-
-    public void deleteSingleNote(String id){
-        SQLiteDatabase db = this.getWritableDatabase();
-    }
-
     public void deleteSingleProject(String name, String directory_tag){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Projects.Projects_Entry.TABLE_NAME,
@@ -305,6 +291,27 @@ public class Database extends SQLiteOpenHelper{
                         + " = ? AND "
                         + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY
                         + " = ?", new String[]{name, directory_tag});
+    }
+
+    public void deleteSingleNote(String name, String dir_tag, String proj_tag){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Notes.NotesEntry.TABLE_NAME,
+                Notes.NotesEntry.COLUMN_NOTES_TITLE
+                        + " = ? AND "
+                        + Notes.NotesEntry.COLUMN_NOTES_DIRECTORY
+                        + " = ? AND "
+                        + Notes.NotesEntry.COLUMN_NOTES_PROJECT
+                        + " = ?", new String[]{name, dir_tag, proj_tag});
+    }
+
+    public void deleteDirectory(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + Directories.Directories_Entry.TABLE_NAME;
+        db.execSQL(query);
+    }
+    public void deleteAllNotes(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Notes.NotesEntry.TABLE_NAME, null, null);
     }
 
     // Be sure to delete file in internal storage and from database
