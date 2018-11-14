@@ -15,20 +15,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
-import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
-import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -290,7 +286,9 @@ public class PageNotes extends AppCompatActivity {
 
     // Helper: Edit Project
     public void openEditNote(){
-
+//        noteIdPath = noteIdData.get(i - NUMBER_OF_IMAGES);
+        Intent openNote = new Intent(ctx, EditNote.class);
+        startActivity(openNote);
     }
 
     // Helper: Delete Project Alert Box
