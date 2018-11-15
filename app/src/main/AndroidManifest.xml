@@ -26,6 +26,7 @@
         <activity android:name=".PageNotes"></activity>
         <activity android:name=".AddNotes"></activity>
         <activity android:name=".ShowNote"></activity>
+        <activity android:name=".EditNote"></activity>
         <activity android:name=".ShowImage"></activity>
 
         <activity android:name=".TestPages"></activity>
