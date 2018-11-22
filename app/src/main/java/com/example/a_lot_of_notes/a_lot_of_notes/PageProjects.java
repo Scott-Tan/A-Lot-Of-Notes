@@ -41,13 +41,14 @@ public class PageProjects extends AppCompatActivity
     FloatingActionButton fab;
     ArrayList<String> listData;
     ArrayList<String> directoryData;
+    ArrayList<String> projectIdData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page);
         dirPath = PageDirectories.directoryPath;
-        setTitle("Projects in " + dirPath + "...");
+        setTitle("Projects");
 
         Log.d(TAG, "onCreate: starting");
         ctx = this;
@@ -57,6 +58,8 @@ public class PageProjects extends AppCompatActivity
 
         populateProjectList();
 
+
+        // create new project within the directory
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,13 +98,14 @@ public class PageProjects extends AppCompatActivity
         listProject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                projectPath = projectIdData.get(i);
+                dirPath= directoryData.get(i);
+
                 Toast.makeText(ctx,
-                        "This is project tag " + listData.get(i) + ". Lead this to notes" +
-                                " with the project and directory tag("+ directoryData.get(i) + ")",
+                        "This is project tag " + projectPath + ". Lead this to notes" +
+                                " with the project and directory tag("+ dirPath + ")",
                         Toast.LENGTH_LONG).show();
                 Log.d(TAG, "onItemClick: after toast");
-                projectPath = listData.get(i);
-                dirPath= directoryData.get(i);
 
                 Intent navToPageNotes = new Intent(ctx, PageNotes.class);
                 startActivity(navToPageNotes);
@@ -146,12 +150,15 @@ public class PageProjects extends AppCompatActivity
         Cursor data = db.getProjectsFromDirectory(dirPath);
         listData = new ArrayList<>();
         directoryData = new ArrayList<>();
+        projectIdData = new ArrayList<>();
 
         Log.d(TAG, "populateProjectList: before loop");
         while(data.moveToNext()){
+            // index 0 is the project id
             // index 1 should be project name column
+            // index 2 should be the directory tag column
+            projectIdData.add(data.getString(0));
             listData.add(data.getString(1));
-            // indexx 2 should be the directory tag column
             directoryData.add(data.getString(2));
         }
         Log.d(TAG, "populateProjectList: end of loop");

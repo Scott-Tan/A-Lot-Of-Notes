@@ -37,6 +37,7 @@ public class PageDirectories extends AppCompatActivity
     Database db;
     ListView listDirectory;
     ArrayList<String> directoryData;
+    ArrayList<String> directoryIdData;
     FloatingActionButton fab;
 
     @Override
@@ -95,12 +96,13 @@ public class PageDirectories extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick: starting");
+                directoryPath = directoryIdData.get(i);
+
                 Toast.makeText(ctx,
                         "This is directory " + directoryData.get(i) + ". Lead this to projects" +
-                                " with the directory tag.",
+                                " with the directory tag: " + directoryPath,
                         Toast.LENGTH_LONG).show();
-                Log.d(TAG, "onItemClick: after toast");
-                directoryPath = directoryData.get(i);
+
                 Log.d(TAG, "onItemClick: ending");
                 Intent navToProjects = new Intent(ctx, PageProjects.class);
                 startActivity(navToProjects);
@@ -142,12 +144,15 @@ public class PageDirectories extends AppCompatActivity
 
         Cursor directoryCursor = db.getAllDirectories();
         directoryData = new ArrayList<>();
+        directoryIdData = new ArrayList<>();
 
         Log.d(TAG, "populateDirectoryList: before loop");
         while(directoryCursor.moveToNext()){
             String directoryName = directoryCursor.getString(1);
+            String directoryId = directoryCursor.getString(0);
 
             directoryData.add(directoryName);
+            directoryIdData.add(directoryId);
         }
         Log.d(TAG, "populateDirectoryList: after loop");
         ListAdapter adapter = new ArrayAdapter<>(this,

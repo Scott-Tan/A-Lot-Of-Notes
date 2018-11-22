@@ -15,13 +15,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
@@ -44,6 +47,8 @@ public class PageNotes extends AppCompatActivity {
     FloatingActionButton fab;
     Database db;
 
+    ListView listNote;
+
     // Someone please change this into a multi dimensional array. This is awful :[
     ArrayList<String> allData;
     ArrayList<String> imageIdData;
@@ -51,7 +56,7 @@ public class PageNotes extends AppCompatActivity {
     ArrayList<String> imageData;
     ArrayList<String> noteIdData;
     ArrayList<String> note_data;
-    ListView listNote;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +66,7 @@ public class PageNotes extends AppCompatActivity {
         dirPath = PageDirectories.directoryPath;
         projPath = PageProjects.projectPath;
 
-        setTitle("Notes in " + projPath + "...");
+        setTitle("Notes and materials");
         ctx = this;
         db = new Database(this);
 
@@ -133,11 +138,12 @@ public class PageNotes extends AppCompatActivity {
         Log.d(TAG, "populateNoteList: before loop");
         while(imageCursor.moveToNext()){
             String image_id = imageCursor.getString(0);
+            String image_title = imageCursor.getString(1);
             String image_path = imageCursor.getString(2);
 
             imageIdData.add(image_id);
+            imageData.add("Image: " + image_title);
             imagePathData.add(image_path);
-            imageData.add(image_id + "\n" + image_path);
         }
 
         NUMBER_OF_IMAGES = imageData.size();
@@ -214,16 +220,53 @@ public class PageNotes extends AppCompatActivity {
                 case GALLERY_RESULT:
                     Uri selectedImage = data.getData();
                     try {
-                        Toast.makeText(ctx, "Image was saved to storage and database!",
-                                Toast.LENGTH_SHORT).show();
+
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        saveImageToInternalStorage(bitmap, "testTitle");
+                        setImageTitle(bitmap);
+
                     } catch (IOException e) {
                         Log.d(TAG, "onActivityResult: IOException e");
                     }
                     break;
             }
         }
+    }
+
+    private void setImageTitle(final Bitmap bitmap) {
+        final LayoutInflater[] layoutInflater = {LayoutInflater.from(ctx)};
+        View mView = layoutInflater[0].inflate(R.layout.input_dialog_box, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ctx);
+        alertDialog.setView(mView);
+        final EditText userInput = mView.findViewById(R.id.userInputDialog);
+        TextView dialogTitle = mView.findViewById(R.id.dialogTitle);
+        dialogTitle.setText("Set a title for the image");
+        Log.d(TAG, "onClick: before alertdialog");
+        alertDialog
+                .setCancelable(false)
+                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String title = userInput.getText().toString();
+                        Toast.makeText(ctx, "Image was saved to storage and database!" +
+                                        " title: " + title + "",
+                                Toast.LENGTH_SHORT).show();
+                        saveImageToInternalStorage(bitmap, title);
+                        populateNoteList();
+
+                        Log.d(TAG, "onClick: before insertDirectory");
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(ctx, "No image saved",
+                                Toast.LENGTH_SHORT).show();
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog alertDialogAndroid = alertDialog.create();
+        alertDialogAndroid.show();
     }
 
     public void saveImageToInternalStorage(Bitmap bitmap, String title) {
@@ -237,6 +280,7 @@ public class PageNotes extends AppCompatActivity {
             fos = new FileOutputStream(filePath);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.close();
+            populateNoteList();
         } catch (FileNotFoundException e) {
             Log.d(TAG, "saveImageToInternalStorage: Could not save to internal storage");
             e.printStackTrace();
@@ -279,7 +323,14 @@ public class PageNotes extends AppCompatActivity {
         }
         else if (item.getTitle() == "Delete") {
             // Confirmation Dialog
-            deleteNoteAlert(name);
+            if(index >= NUMBER_OF_IMAGES){
+                Log.d(TAG, "onContextItemSelected: index and num images is: "
+                        + index + " and " + NUMBER_OF_IMAGES);
+                deleteNoteAlert(name);
+            }else{
+                Toast.makeText(ctx, "Image was selected. Handle with different method",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
         return true;
     }
@@ -295,7 +346,7 @@ public class PageNotes extends AppCompatActivity {
     public void deleteNoteAlert(final String noteName){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmation");
-        builder.setMessage("Are you sure you want to delete note?")
+        builder.setMessage("Are you sure you want to delete this?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
