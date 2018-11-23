@@ -52,6 +52,7 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL(Projects.Projects_Entry.CREATE_PROJECTS_TABLE);
         db.execSQL(Notes.NotesEntry.CREATE_NOTES_TABLE);
         db.execSQL(Image.ImageEntry.CREATE_IMAGE_TABLE);
+        db.execSQL(Task.TaskEntry.CREATE_TASKS_TABLE);
 
         Log.d(TAG, "onCreate: ending database creation");
     }
@@ -62,6 +63,7 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL("drop table if exists " + Projects.Projects_Entry.TABLE_NAME);
         db.execSQL("drop table if exists " + Notes.NotesEntry.TABLE_NAME);
         db.execSQL("drop table if exists " + Image.ImageEntry.TABLE_NAME);
+        db.execSQL("drop table if exists " + Task.TaskEntry.TABLE_NAME);
 
         onCreate(db);
     }
@@ -131,6 +133,18 @@ public class Database extends SQLiteOpenHelper{
         Log.d(TAG, "insertImagePath: ending");
         return image_id;
     }
+    
+    public long insertNewTask(String task, String category){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(Task.TaskEntry.COLUMN_TASK_TITLE, task);
+        cv.put(Task.TaskEntry.COLUMN_TASK_CATEGORY, category);
+
+        Log.d(TAG, "insertNewTask: inserting");
+        long task_id = db.insert(Task.TaskEntry.TABLE_NAME, null, cv);
+        Log.d(TAG, "insertNewTask: ending");
+        return task_id;
+    }
 
     // define queries to get needs
     public Cursor getAllDirectories(){
@@ -178,6 +192,18 @@ public class Database extends SQLiteOpenHelper{
         return data;
     }
 
+    public Cursor getTaskList(){
+        Log.d(TAG, "getTaskList: starting");
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + Task.TaskEntry.TABLE_NAME;
+
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "getTaskList: ending");
+
+        return data;
+    }
+    
     // define queries to get needs
     public Cursor getProjectsFromDirectory(String directory_tag){
         Log.d(TAG, "getProjectsFromDirectory: starting");
@@ -277,6 +303,21 @@ public class Database extends SQLiteOpenHelper{
         Log.d(TAG, "updateNote: ending");
     }
 
+    public void updateTask(String task, String category){
+        Log.d(TAG, "updateTask: starting");
+        Log.d(TAG, "updateTask: task is: " + task);
+        Log.d(TAG, "updateTask: category is: " + category);
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + Task.TaskEntry.TABLE_NAME
+                + " SET " + Task.TaskEntry.COLUMN_TASK_TITLE
+                + " = '" + task + "', "
+                + " WHERE " + Task.TaskEntry.COLUMN_TASK_CATEGORY
+                + " = '" + category + "'";
+        db.execSQL(query);
+
+        Log.d(TAG, "updateTask: ending");
+    }
+    
     public void deleteSingleDirectory(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Directories.Directories_Entry.TABLE_NAME,
@@ -325,6 +366,12 @@ public class Database extends SQLiteOpenHelper{
 
         Log.d(TAG, "deleteImageById: ending");
         return data;
+    }
+    
+    public void deleteTask(String task){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "DELETE FROM " + Task.TaskEntry.TABLE_NAME;
+        db.execSQL(query);
     }
 
     private String getDateTime() {
