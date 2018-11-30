@@ -9,20 +9,9 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:id="@+id/content_main_textview"
+    <include
+        layout="@layout/list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="295dp"
-        android:layout_weight="1"
-        android:text="Hello World!"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        />
 </android.support.constraint.ConstraintLayout>

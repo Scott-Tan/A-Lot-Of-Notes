@@ -19,4 +19,11 @@
         android:layout_height="wrap_content"
         android:hint="Name..."
         android:inputType="textCapSentences" />
+
+    <EditText
+        android:id="@+id/userInputDialog2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name..."
+        android:inputType="textCapSentences" />
 </LinearLayout>

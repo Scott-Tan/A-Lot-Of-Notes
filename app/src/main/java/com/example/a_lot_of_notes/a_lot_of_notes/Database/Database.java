@@ -22,6 +22,7 @@ import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Image;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -134,10 +135,11 @@ public class Database extends SQLiteOpenHelper{
         return image_id;
     }
     
-    public long insertNewTask(String task, String category){
+    public long insertNewTask(String task, String task_due, String category){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(Task.TaskEntry.COLUMN_TASK_TITLE, task);
+        cv.put(Task.TaskEntry.COLUMN_TASK_DUE, task_due);
         cv.put(Task.TaskEntry.COLUMN_TASK_CATEGORY, category);
 
         Log.d(TAG, "insertNewTask: inserting");

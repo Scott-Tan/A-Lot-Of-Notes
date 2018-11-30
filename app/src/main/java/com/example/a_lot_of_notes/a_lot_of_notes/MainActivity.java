@@ -1,14 +1,17 @@
 package com.example.a_lot_of_notes.a_lot_of_notes;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,18 +21,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
 
+    private Context ctx;
+    private Database db;
+    private ListView toDoList;
+    private ArrayList<String> taskData;
+    private String taskCategory = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new Database(this);
+        ctx = this;
+        toDoList = findViewById(R.id.list_view);
+        setTitle("To-Do List");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,10 +60,7 @@ public class MainActivity extends AppCompatActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+            public void onClick(View view) { handleOnClick(view); }
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -51,7 +71,70 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        populateToDoList();
     }
+
+    private void handleOnClick(View view){
+        Log.d(TAG, "handleOnClick: fab starting");
+        LayoutInflater layoutInflater = LayoutInflater.from(ctx);
+        View mView = layoutInflater.inflate(R.layout.input_dialog_box, null);
+        android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(ctx);
+        alertDialog.setView(mView);
+
+        final EditText userInput = mView.findViewById(R.id.userInputDialog);
+        final EditText userInput2 = mView.findViewById(R.id.userInputDialog2);
+        TextView dialogTitle = mView.findViewById(R.id.dialogTitle);
+
+        dialogTitle.setText("Create something new todo...");
+        userInput.setHint("What is it?");
+        userInput2.setHint("By when?");
+
+        Log.d(TAG, "handleOnClick: fab before alertdialog");
+        alertDialog
+                .setCancelable(false)
+                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String task_name = userInput.getText().toString();
+                        String task_due = userInput2.getText().toString();
+                        Log.d(TAG, "handleOnClick: before insertDirectory");
+                        db.insertNewTask(task_name, task_due, taskCategory);
+                        populateToDoList();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog alertDialogAndroid = alertDialog.create();
+        alertDialogAndroid.show();
+    }
+
+    //populate list in content_main.xml
+    private void populateToDoList(){
+        Log.d(TAG, "populateToDoList: starting");
+
+        Cursor taskCursor = db.getTaskList();
+        taskData = new ArrayList<>();
+
+        Log.d(TAG, "populateToDoList: before loop");
+        while(taskCursor.moveToNext()){
+            String taskName = taskCursor.getString(1);
+            String taskDue = taskCursor.getString(3);
+
+            taskData.add(taskName + "\n" + "    due: " + taskDue);
+        }
+        Log.d(TAG, "populateToDoList: after loop");
+        ListAdapter adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, taskData);
+        toDoList.setAdapter(adapter);
+
+        Log.d(TAG, "populateToDoList: ending");
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -120,8 +203,11 @@ public class MainActivity extends AppCompatActivity
             Log.d(TAG, ".onNavigationItemSelected: end nav_camera");
         }
         else if (id == R.id.to_do) {
-            Intent intent = new Intent(this, ToDoList.class);
-            startActivity(intent);
+            //Use intents if not already in MainActivity
+            //Intent intent = new Intent(this, MainActivity.class);
+            //startActivity(intent);
+            onBackPressed();
+
         } else if (id == R.id.dev_note_page) {
             // Navigate to dev page options in navigation menu
             Intent intent = new Intent(this, TestPages.class);

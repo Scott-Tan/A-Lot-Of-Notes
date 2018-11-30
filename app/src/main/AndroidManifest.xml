@@ -28,6 +28,7 @@
         <activity android:name=".ShowNote"></activity>
         <activity android:name=".EditNote"></activity>
         <activity android:name=".ShowImage"></activity>
+        <activity android:name=".ContentMain"></activity>
 
         <activity android:name=".TestPages"></activity>
         <activity android:name=".TestImage"></activity>
