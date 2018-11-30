@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { handleOnClick(view); }
+            public void onClick(View view) { handlefabOnClick(view); }
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,22 +77,52 @@ public class MainActivity extends AppCompatActivity
         populateToDoList();
     }
 
-    private void handleOnClick(View view){
-        Log.d(TAG, "handleOnClick: fab starting");
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Toast.makeText(this, "No action", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void handlefabOnClick(View view){
+        Log.d(TAG, "handlefabOnClick: fab starting");
         LayoutInflater layoutInflater = LayoutInflater.from(ctx);
-        View mView = layoutInflater.inflate(R.layout.input_dialog_box, null);
+        View mView = layoutInflater.inflate(R.layout.todo_dialog_box, null);
         android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(ctx);
         alertDialog.setView(mView);
 
-        final EditText userInput = mView.findViewById(R.id.userInputDialog);
-        final EditText userInput2 = mView.findViewById(R.id.userInputDialog2);
-        TextView dialogTitle = mView.findViewById(R.id.dialogTitle);
+        final EditText userInput = mView.findViewById(R.id.todo_userInputDialog);
+        final EditText userInput2 = mView.findViewById(R.id.todo_due_userInputDialog);
+        TextView dialogTitle = mView.findViewById(R.id.todo_dialogTitle);
 
         dialogTitle.setText("Create something new todo...");
-        userInput.setHint("What is it?");
-        userInput2.setHint("By when?");
-
-        Log.d(TAG, "handleOnClick: fab before alertdialog");
+        Log.d(TAG, "handlefabOnClick: fab before alertdialog");
         alertDialog
                 .setCancelable(false)
                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
@@ -98,7 +130,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String task_name = userInput.getText().toString();
                         String task_due = userInput2.getText().toString();
-                        Log.d(TAG, "handleOnClick: before insertDirectory");
+                        Log.d(TAG, "handlefabOnClick: before insertDirectory");
                         db.insertNewTask(task_name, task_due, taskCategory);
                         populateToDoList();
                     }
@@ -133,40 +165,6 @@ public class MainActivity extends AppCompatActivity
         toDoList.setAdapter(adapter);
 
         Log.d(TAG, "populateToDoList: ending");
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "No action", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

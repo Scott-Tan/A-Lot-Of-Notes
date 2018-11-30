@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/custom_dialog_layout_design_user_input"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/dialogTitle"
+        android:id="@+id/todo_dialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create new..."
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/userInputDialog"
+        android:id="@+id/todo_userInputDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name..."
+        android:hint="Remember to do..."
         android:inputType="textCapSentences" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/todo_due_userInputDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="by..."
+        android:inputType="textCapSentences" />
+
+</android.widget.LinearLayout>
