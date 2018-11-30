@@ -1,17 +1,17 @@
 # CMPS-121-Mobile-Applications
 Container for CMPS 121 (mostly project) <br>
-This project is not meant to be efficient. It is just a tool to learn some of the basics
+This project is just a tool to learn some of the basics
 of Android mobile development <br>
-Be prepared for a lot of spagetti code if no one works on it after the final 
-class submission <br>
 
 ## Things that could be done after final class submission
-1) Refactor pages into fragments
-2) Use recycler view and a custom adapter so that the recycler
-can contain an image item and a note item
-3) 
+1) Refactor pages into fragments. Load these list fragments into main activity.<br> 
+Would elimnate having to define toolbars in each activity.
+2) Use recycler view and a custom adapter, so that the recycler view <br>
+can contain an image item, file item, and a note item
+3) Implement resizeable image.
+4) 
 
 Contributors to this project:
-Scott Tan [Scott-Tan] (Product owner && full stack developer)
+Scott Tan [Scott-Tan] (Product owner && developer)
 Rahel Kurniawan[rakurnia] (Member && developer)
 Elizabeth Dinh[edinh21] (Member && developer)

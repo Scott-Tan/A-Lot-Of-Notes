@@ -4,15 +4,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -35,7 +42,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PageNotes extends AppCompatActivity {
+public class PageNotes extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "PageNotes";
     private static final int GALLERY_RESULT= 1;
     private int NUMBER_OF_IMAGES = 0;
@@ -61,18 +69,20 @@ public class PageNotes extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page);
+        setContentView(R.layout.page_nav);
+        Log.d(TAG, "onCreate: starting");
+        setTitle("Notes and materials");
 
         dirPath = PageDirectories.directoryPath;
         projPath = PageProjects.projectPath;
 
-        setTitle("Notes and materials");
         ctx = this;
         db = new Database(this);
 
         fab = findViewById(R.id.page_fab);
         listNote = findViewById(R.id.list_view);
 
+        loadActionBarOptions();
         populateNoteList();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -113,9 +123,35 @@ public class PageNotes extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         populateNoteList();
+    }
+
+    // handles loading a new tool bar for this activity since it was defined in manifest file
+    //  to have no actionbar
+    private void loadActionBarOptions() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void populateNoteList(){
@@ -330,6 +366,7 @@ public class PageNotes extends AppCompatActivity {
             }else{
                 Toast.makeText(ctx, "Image was selected. Handle with different method",
                         Toast.LENGTH_SHORT).show();
+
             }
         }
         return true;
@@ -362,5 +399,60 @@ public class PageNotes extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        Log.d(TAG, ".onNavigationItemSelected");
+
+        if(id == R.id.nav_folders){
+            Log.d(TAG, ".onNavigationItemSelected: clicked nav_folders");
+            //Use intent if not already in PageDirectories
+            Intent navToDirectories = new Intent(this, PageDirectories.class);
+            startActivity(navToDirectories);
+
+        }else if (id == R.id.nav_camera) {
+            Log.d(TAG, ".onNavigationItemSelected: clicked nav_camera");
+            if(!this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+                //disable camera
+                android.app.AlertDialog.Builder a_builder = new android.app.AlertDialog.Builder(ctx);
+                a_builder.setMessage("No camera detected on this device")
+                        .setCancelable(false)
+                        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+                android.app.AlertDialog alert = a_builder.create();
+                alert.setTitle("Alert");
+                alert.show();
+            }
+            Log.d(TAG, ".onNavigationItemSelected: end if statement");
+            Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivity(i);
+            Log.d(TAG, ".onNavigationItemSelected: end nav_camera");
+        }
+        else if (id == R.id.to_do) {
+            //Use intents if not already in MainActivity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+
+        } else if (id == R.id.dev_note_page) {
+            // Navigate to dev page options in navigation menu
+            Intent intent = new Intent(this, TestPages.class);
+            startActivity(intent);
+        } else if (id == R.id.dev_image_page) {
+            // Navigate to image testing page in navigation menu
+            Intent intent = new Intent(this, TestImage.class);
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

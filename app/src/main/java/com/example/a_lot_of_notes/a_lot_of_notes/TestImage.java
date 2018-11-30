@@ -30,7 +30,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
-import com.example.a_lot_of_notes.a_lot_of_notes.adapters.RecyclerViewAdapter;
 
 public class TestImage extends AppCompatActivity {
     private static final String TAG = "TestImage";
