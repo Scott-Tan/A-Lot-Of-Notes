@@ -95,7 +95,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/Database/Database.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
@@ -116,11 +116,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShowNote.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShowNote.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="126" column="50" selection-start-line="126" selection-start-column="50" selection-end-line="126" selection-end-column="50" />
+            <state relative-caret-position="497">
+              <caret line="118" column="39" lean-forward="true" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -3086,13 +3086,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="126" column="50" selection-start-line="126" selection-start-column="50" selection-end-line="126" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/page_note.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -3152,6 +3145,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="118" column="39" lean-forward="true" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
         </state>
       </provider>
     </entry>

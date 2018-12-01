@@ -9,7 +9,7 @@ Would elimnate having to define toolbars in each activity.
 2) Use recycler view and a custom adapter, so that the recycler view <br>
 can contain an image item, file item, and a note item
 3) Implement resizeable image.
-4) 
+4) Many src files need abstraction to remove redundancy.
 
 Contributors to this project:
 Scott Tan [Scott-Tan] (Product owner && developer)
