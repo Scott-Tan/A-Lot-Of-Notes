@@ -15,12 +15,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Directories;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Image;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
+import com.example.a_lot_of_notes.a_lot_of_notes.model.PdfFile;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Projects;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Task;
 
@@ -53,6 +55,7 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL(Projects.Projects_Entry.CREATE_PROJECTS_TABLE);
         db.execSQL(Notes.NotesEntry.CREATE_NOTES_TABLE);
         db.execSQL(Image.ImageEntry.CREATE_IMAGE_TABLE);
+        db.execSQL(PdfFile.PdfFileEntry.CREATE_PDF_TABLE);
         db.execSQL(Task.TaskEntry.CREATE_TASKS_TABLE);
 
         Log.d(TAG, "onCreate: ending database creation");
@@ -64,6 +67,7 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL("drop table if exists " + Projects.Projects_Entry.TABLE_NAME);
         db.execSQL("drop table if exists " + Notes.NotesEntry.TABLE_NAME);
         db.execSQL("drop table if exists " + Image.ImageEntry.TABLE_NAME);
+        db.execSQL("drop table if exists " + PdfFile.PdfFileEntry.TABLE_NAME);
         db.execSQL("drop table if exists " + Task.TaskEntry.TABLE_NAME);
 
         onCreate(db);
@@ -133,6 +137,25 @@ public class Database extends SQLiteOpenHelper{
         long image_id = db.insert(Image.ImageEntry.TABLE_NAME, null, cv);
         Log.d(TAG, "insertImagePath: ending");
         return image_id;
+    }
+
+    public long insertPdf(String title, Uri pdfUri, String directory_tag, String project_tag){
+        Log.d(TAG, "insertPdf: starting");
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        String uri = pdfUri.toString();
+
+        cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_TITLE, title);
+        cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_URI, uri);
+        cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY, directory_tag);
+        cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT, project_tag);
+
+        Log.d(TAG, "insertPdf: inserting");
+        long pdf_id = db.insert(PdfFile.PdfFileEntry.TABLE_NAME, null, cv);
+        Log.d(TAG, "insertPdf: ending");
+        return pdf_id;
     }
     
     public long insertNewTask(String task, String task_due, String category){
@@ -249,6 +272,20 @@ public class Database extends SQLiteOpenHelper{
         return data;
     }
 
+    public Cursor getPdfByTags(String directory_tag, String project_tag){
+        Log.d(TAG, "getPdfByTags: starting");
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + PdfFile.PdfFileEntry.TABLE_NAME
+                + " WHERE "
+                + PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY + " = '" + directory_tag + "'"
+                + " AND "
+                + PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT + " = '" + project_tag + "'";
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "getPdfByTags: ending");
+        return data;
+    }
+
     public Cursor getNote(String id){
         Log.d(TAG, "getNote: starting");
         SQLiteDatabase db = getReadableDatabase();
@@ -336,15 +373,37 @@ public class Database extends SQLiteOpenHelper{
                         + " = ?", new String[]{name, directory_tag});
     }
 
-    public void deleteSingleNote(String name, String dir_tag, String proj_tag){
+    public void deleteSingleNote(String id, String dir_tag, String proj_tag){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Notes.NotesEntry.TABLE_NAME,
-                Notes.NotesEntry.COLUMN_NOTES_TITLE
+                Notes.NotesEntry._ID
                         + " = ? AND "
                         + Notes.NotesEntry.COLUMN_NOTES_DIRECTORY
                         + " = ? AND "
                         + Notes.NotesEntry.COLUMN_NOTES_PROJECT
-                        + " = ?", new String[]{name, dir_tag, proj_tag});
+                        + " = ?", new String[]{id, dir_tag, proj_tag});
+    }
+
+    public void deleteSingleImage(String id, String dir_tag, String proj_tag){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Image.ImageEntry.TABLE_NAME,
+                Image.ImageEntry._ID
+                        + " = ? AND "
+                        + Image.ImageEntry.COLUMN_IMAGE_DIRECTORY
+                        + " = ? AND "
+                        + Image.ImageEntry.COLUMN_IMAGE_PROJECT
+                        + " = ?", new String[]{id, dir_tag, proj_tag});
+    }
+
+    public void deleteSinglePdf(String id, String dir_tag, String proj_tag){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(PdfFile.PdfFileEntry.TABLE_NAME,
+                PdfFile.PdfFileEntry._ID
+                + " = ? AND "
+                + PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY
+                + " = ? AND "
+                + PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT
+                + " = ?", new String[]{id, dir_tag, proj_tag});
     }
 
     public void deleteDirectory(){

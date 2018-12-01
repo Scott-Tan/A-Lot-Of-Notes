@@ -47,6 +47,9 @@
         <activity
             android:name=".ShowImage"
             android:parentActivityName=".PageNotes"/>
+        <activity
+            android:name=".ShowPdf"
+            android:parentActivityName=".PageNotes"/>
         <activity android:name=".TestPages" />
         <activity android:name=".TestImage" />
 

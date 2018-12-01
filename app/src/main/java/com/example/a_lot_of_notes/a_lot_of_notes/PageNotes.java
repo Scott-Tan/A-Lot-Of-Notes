@@ -46,11 +46,15 @@ public class PageNotes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "PageNotes";
     private static final int GALLERY_RESULT= 1;
+    private static final int STORAGE_RESULT= 2;
     private int NUMBER_OF_IMAGES = 0;
+    private int NUMBER_OF_PDFS = 0;
+    private int NUMBER_OF_IMGPDF = 0;
 
     private String dirPath, projPath;
     static String noteIdPath = "";
     static String imagePath = "";
+    static String pdfUri = "";
     Context ctx;
     FloatingActionButton fab;
     Database db;
@@ -60,8 +64,12 @@ public class PageNotes extends AppCompatActivity
     // Someone please change this into a multi dimensional array. This is awful :[
     ArrayList<String> allData;
     ArrayList<String> imageIdData;
+    ArrayList<String> imageTitleData;
     ArrayList<String> imagePathData;
     ArrayList<String> imageData;
+    ArrayList<String> pdfIdData;
+    ArrayList<String> pdfData;
+    ArrayList<String> pdfUriData;
     ArrayList<String> noteIdData;
     ArrayList<String> note_data;
 
@@ -100,21 +108,26 @@ public class PageNotes extends AppCompatActivity
                         "This is item " + allData.get(i) + ". Lead this to a page" +
                                 " that shows the note with an edit/save/delete option.",
                         Toast.LENGTH_LONG).show();
-                if(i >= NUMBER_OF_IMAGES){
+
+                if(i >= NUMBER_OF_IMGPDF){              //note is selected
                     Log.d(TAG, "onItemClick: num images = " + NUMBER_OF_IMAGES);
                     Log.d(TAG, "onItemClick: i = " + i);
                     Log.d(TAG, "onItemClick: size of noteIdData " + noteIdData.size());
 
-                    noteIdPath = noteIdData.get(i - NUMBER_OF_IMAGES);
+                    noteIdPath = noteIdData.get(i - NUMBER_OF_IMGPDF);
                     Intent openNote = new Intent(ctx, ShowNote.class);
                     startActivity(openNote);
-                }else{
+                } else if(i >= NUMBER_OF_IMAGES){      //pdf is selected
+                    Toast.makeText(ctx, "pdf was selected", Toast.LENGTH_SHORT).show();
+                    pdfUri = pdfUriData.get(i - NUMBER_OF_IMAGES);
+                    Intent openPdf = new Intent(ctx, ShowPdf.class);
+                    startActivity(openPdf);
+                } else {                                //image is selected
                     Log.d(TAG, "onItemClick: i = " + i);
                     imagePath = imagePathData.get(i);
                     Intent openImage = new Intent(ctx, ShowImage.class);
                     startActivity(openImage);
                 }
-
             }
         });
 
@@ -163,11 +176,17 @@ public class PageNotes extends AppCompatActivity
                 db.getNotesByTags(dirPath, projPath);
         Cursor imageCursor =
                 db.getImageByTags(dirPath, projPath);
+        Cursor pdfCursor =
+                db.getPdfByTags(dirPath,projPath);
 
         allData = new ArrayList<>();
         imageIdData = new ArrayList<>();
+        imageTitleData = new ArrayList<>();
         imagePathData = new ArrayList<>();
         imageData = new ArrayList<>();
+        pdfIdData = new ArrayList<>();
+        pdfData = new ArrayList<>();
+        pdfUriData = new ArrayList<>();
         noteIdData = new ArrayList<>();
         note_data = new ArrayList<>();
 
@@ -178,6 +197,7 @@ public class PageNotes extends AppCompatActivity
             String image_path = imageCursor.getString(2);
 
             imageIdData.add(image_id);
+            imageTitleData.add(image_title);
             imageData.add("Image: " + image_title);
             imagePathData.add(image_path);
         }
@@ -185,18 +205,31 @@ public class PageNotes extends AppCompatActivity
         NUMBER_OF_IMAGES = imageData.size();
         Log.d(TAG, "populateNoteList: amount of image: " + NUMBER_OF_IMAGES);
 
+        while(pdfCursor.moveToNext()){
+            String pdf_id = pdfCursor.getString(0);
+            String pdf_title = pdfCursor.getString(1);
+            String pdf_uri = pdfCursor.getString(2);
+
+            pdfIdData.add(pdf_id);
+            pdfData.add("Pdf: " + pdf_title);
+            pdfUriData.add(pdf_uri);
+        }
+
+        NUMBER_OF_PDFS = pdfData.size();
+        Log.d(TAG, "populateNoteList: amount of pdfs: " + NUMBER_OF_PDFS);
+
         while(noteCursor.moveToNext()){
             String note_id = noteCursor.getString(0);
             String note_title = noteCursor.getString(3);
 
             note_data.add(note_title);
-//            note_data.add(note_title + "\n" + note_id);
             noteIdData.add(note_id);
         }
         Log.d(TAG, "populateNoteList: after loop");
 
 
         allData.addAll(imageData);
+        allData.addAll(pdfData);
         allData.addAll(note_data);
 
         ListAdapter adapter = new ArrayAdapter<>(this,
@@ -204,6 +237,9 @@ public class PageNotes extends AppCompatActivity
         listNote.setAdapter(adapter);
 
         Log.d(TAG, "populateNoteList: ending");
+
+        NUMBER_OF_IMGPDF = NUMBER_OF_IMAGES + NUMBER_OF_PDFS;
+
     }
 
     /*
@@ -231,6 +267,9 @@ public class PageNotes extends AppCompatActivity
             Toast.makeText(this, "Open gallery", Toast.LENGTH_SHORT).show();
             getImageFromGallery();
             return true;
+        }else if(id == R.id.action_import_pdf){
+            getPdfFromStorage();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -244,6 +283,17 @@ public class PageNotes extends AppCompatActivity
             startActivityForResult(openGallery, GALLERY_RESULT);
         }catch(Exception e){
             Log.d(TAG, "getImageFromGallery: Exception e");
+        }
+    }
+
+    private void getPdfFromStorage(){
+        Log.d(TAG, "getPdfFromStorage: starting");
+        try{
+            Intent openStorage = new Intent(Intent.ACTION_GET_CONTENT);
+            openStorage.setType("application/pdf");
+            startActivityForResult(openStorage, STORAGE_RESULT);
+        }catch(Exception e){
+            Log.d(TAG, "getPdfFromStorage: Exception e");
         }
     }
 
@@ -263,6 +313,14 @@ public class PageNotes extends AppCompatActivity
                     } catch (IOException e) {
                         Log.d(TAG, "onActivityResult: IOException e");
                     }
+                    break;
+                case STORAGE_RESULT:
+                    Uri selectedPdf = data.getData();
+                    setPdfTitle(selectedPdf);
+                    break;
+                    
+                default:
+                    Log.d(TAG, "onActivityResult: error: default case?");
                     break;
             }
         }
@@ -336,6 +394,53 @@ public class PageNotes extends AppCompatActivity
 
     }
 
+    private void setPdfTitle(final Uri selectedPdf) {
+        final LayoutInflater[] layoutInflater = {LayoutInflater.from(ctx)};
+        View mView = layoutInflater[0].inflate(R.layout.input_dialog_box, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ctx);
+        alertDialog.setView(mView);
+        final EditText userInput = mView.findViewById(R.id.userInputDialog);
+        TextView dialogTitle = mView.findViewById(R.id.dialogTitle);
+        dialogTitle.setText("Set a title for the pdf");
+        Log.d(TAG, "onClick: before alertdialog");
+        alertDialog
+                .setCancelable(false)
+                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String title = userInput.getText().toString();
+                        Toast.makeText(ctx, "Pdf was saved to storage and database!" +
+                                        " title: " + title + "",
+                                Toast.LENGTH_SHORT).show();
+                        savePdfToInternalStorage(selectedPdf, title);
+                        populateNoteList();
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(ctx, "No image saved",
+                                Toast.LENGTH_SHORT).show();
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog alertDialogAndroid = alertDialog.create();
+        alertDialogAndroid.show();
+    }
+
+    private void savePdfToInternalStorage(Uri selectedPdf, String title) {
+        Log.d(TAG, "savePdfToInternalStorage: starting");
+        savePdfToDatabase(title, selectedPdf);
+        Log.d(TAG, "savePdfToInternalStorage: ending");
+    }
+
+    private void savePdfToDatabase(String title, Uri selectedPdf) {
+        Log.d(TAG, "savePdfToDatabase: starting");
+        db.insertPdf(title, selectedPdf, dirPath, projPath);
+        Log.d(TAG, "savePdfToDatabase: ending");
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -351,22 +456,26 @@ public class PageNotes extends AppCompatActivity
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         final int index = info.position;
-        final String name = listNote.getItemAtPosition(index).toString();
+        //final String name = listNote.getItemAtPosition(index).toString();
+        String id;
 
         if (item.getTitle() == "Edit") {
             // Open AddNotes class to edit notes
             openEditNote();
-        }
-        else if (item.getTitle() == "Delete") {
+        } else if (item.getTitle() == "Delete") {
             // Confirmation Dialog
-            if(index >= NUMBER_OF_IMAGES){
-                Log.d(TAG, "onContextItemSelected: index and num images is: "
-                        + index + " and " + NUMBER_OF_IMAGES);
-                deleteNoteAlert(name);
-            }else{
-                Toast.makeText(ctx, "Image was selected. Handle with different method",
-                        Toast.LENGTH_SHORT).show();
-
+            if(index >= NUMBER_OF_IMGPDF){
+                Log.d(TAG, "onContextItemSelected: item was selected");
+                id = noteIdData.get(index - NUMBER_OF_IMGPDF);
+                deleteNoteAlert(id);
+            }else if(index >= NUMBER_OF_IMAGES){        // selected pdf
+                Log.d(TAG, "onContextItemSelected: pdf was selected");
+                id = pdfIdData.get(index - NUMBER_OF_IMAGES);
+                deletePdfAlert(id);
+            }else{                                      // selected image
+                Log.d(TAG, "onContextItemSelected: image was selected");
+                id = imageIdData.get(index);
+                deleteImageAlert(id, index);
             }
         }
         return true;
@@ -387,6 +496,7 @@ public class PageNotes extends AppCompatActivity
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Log.d(TAG, "onClick: deleting note item");
                         db.deleteSingleNote(noteName,dirPath,projPath);
                         Toast.makeText(PageNotes.this, "Deleted", Toast.LENGTH_LONG).show();
                         populateNoteList();
@@ -399,6 +509,62 @@ public class PageNotes extends AppCompatActivity
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void deletePdfAlert(final String pdfid){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation");
+        builder.setMessage("Are you sure you want to delete this?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d(TAG, "onClick: pdfid: " + pdfid
+                                        + "\n num img" + NUMBER_OF_IMAGES);
+
+                        db.deleteSinglePdf(pdfid, dirPath, projPath);
+                        Toast.makeText(PageNotes.this, "Deleted", Toast.LENGTH_LONG).show();
+                        populateNoteList();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void deleteImageAlert(final String imageid, final int index){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation");
+        builder.setMessage("Are you sure you want to delete this?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d(TAG, "onClick: pdfid: " + imageid
+                                + "\n num img" + NUMBER_OF_IMAGES);
+                        deleteImageInternalStorage(index);
+                        db.deleteSingleImage(imageid, dirPath, projPath);
+                        Toast.makeText(PageNotes.this, "Deleted", Toast.LENGTH_LONG).show();
+                        populateNoteList();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void deleteImageInternalStorage(int index){
+        Log.d(TAG, "deleteImageInternalStorage: deleting image in internal storage");
+        File dir = getFilesDir();
+        String title = imageTitleData.get(index);
+        File file = new File(dir, title+".png");
+        file.delete();
     }
 
     @Override

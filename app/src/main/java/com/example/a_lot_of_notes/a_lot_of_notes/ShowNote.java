@@ -124,7 +124,7 @@ public class ShowNote extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        db.deleteSingleNote(noteName,dirPath,projPath);
+                        db.deleteSingleNote(noteID,dirPath,projPath);
                         Toast.makeText(ShowNote.this, "Deleted", Toast.LENGTH_LONG).show();
                         finish();
                     }

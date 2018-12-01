@@ -7,4 +7,7 @@
         android:icon="@drawable/ic_menu_gallery"
         android:title="Import Image"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_import_pdf"
+        android:title="Import PDF" />
 </menu>
