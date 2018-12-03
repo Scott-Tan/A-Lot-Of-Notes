@@ -5,8 +5,8 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -48,8 +48,7 @@
             android:name=".ShowImage"
             android:parentActivityName=".PageNotes"/>
         <activity
-            android:name=".ShowPdf"
-            android:parentActivityName=".PageNotes"/>
+            android:name=".ShowPdf" />
         <activity android:name=".TestPages" />
         <activity android:name=".TestImage" />
 

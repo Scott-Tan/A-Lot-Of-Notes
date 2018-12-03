@@ -107,10 +107,10 @@ public class PageDirectories extends AppCompatActivity
                 Log.d(TAG, "onItemClick: starting");
                 directoryPath = directoryIdData.get(i);
 
-                Toast.makeText(ctx,
-                        "This is directory " + directoryData.get(i) + ". Lead this to projects" +
-                                " with the directory tag: " + directoryPath,
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(ctx,
+                        //"This is directory " + directoryData.get(i) + ". Lead this to projects" +
+                                //" with the directory tag: " + directoryPath,
+                        //Toast.LENGTH_LONG).show();
 
                 Log.d(TAG, "onItemClick: ending");
                 Intent navToProjects = new Intent(ctx, PageProjects.class);

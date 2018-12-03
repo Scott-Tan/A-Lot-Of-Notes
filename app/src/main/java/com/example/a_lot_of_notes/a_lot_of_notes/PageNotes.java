@@ -1,6 +1,7 @@
 package com.example.a_lot_of_notes.a_lot_of_notes;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -104,10 +105,10 @@ public class PageNotes extends AppCompatActivity
         listNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ctx,
-                        "This is item " + allData.get(i) + ". Lead this to a page" +
-                                " that shows the note with an edit/save/delete option.",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(ctx,
+                        //"This is item " + allData.get(i) + ". Lead this to a page" +
+                                //" that shows the note with an edit/save/delete option.",
+                       // Toast.LENGTH_LONG).show();
 
                 if(i >= NUMBER_OF_IMGPDF){              //note is selected
                     Log.d(TAG, "onItemClick: num images = " + NUMBER_OF_IMAGES);
@@ -119,7 +120,11 @@ public class PageNotes extends AppCompatActivity
                     startActivity(openNote);
                 } else if(i >= NUMBER_OF_IMAGES){      //pdf is selected
                     Toast.makeText(ctx, "pdf was selected", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onItemClick: i = " + i);
+                    Log.d(TAG, "onItemClick: NUMBER_OF_IMAGES = " + NUMBER_OF_IMAGES);
+                    Log.d(TAG, "onItemClick: pdfUriData.size() = " + pdfUriData.size());
                     pdfUri = pdfUriData.get(i - NUMBER_OF_IMAGES);
+                    Log.d(TAG, "onItemClick: pdfUri = " + pdfUri);
                     Intent openPdf = new Intent(ctx, ShowPdf.class);
                     startActivity(openPdf);
                 } else {                                //image is selected
@@ -261,18 +266,30 @@ public class PageNotes extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: starting");
         int id = item.getItemId();
+        Boolean switchBool = false;
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_import_image) {
-            Toast.makeText(this, "Open gallery", Toast.LENGTH_SHORT).show();
-            getImageFromGallery();
-            return true;
-        }else if(id == R.id.action_import_pdf){
-            getPdfFromStorage();
-            return true;
+        switch(id) {
+            case R.id.action_import_image:
+                Toast.makeText(this, "Open gallery", Toast.LENGTH_SHORT).show();
+                getImageFromGallery();
+                switchBool = true;
+                break;
+            case R.id.action_import_pdf:
+                getPdfFromStorage();
+                switchBool = true;
+                break;
+            case R.id.action_add_note:
+                fab.callOnClick();
+                switchBool = true;
+                break;
+            default:
+                //item selected failed
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+        // item selected was success
+        return switchBool;
     }
 
     private void getImageFromGallery() {
@@ -289,8 +306,9 @@ public class PageNotes extends AppCompatActivity
     private void getPdfFromStorage(){
         Log.d(TAG, "getPdfFromStorage: starting");
         try{
-            Intent openStorage = new Intent(Intent.ACTION_GET_CONTENT);
+            Intent openStorage = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             openStorage.setType("application/pdf");
+            openStorage.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivityForResult(openStorage, STORAGE_RESULT);
         }catch(Exception e){
             Log.d(TAG, "getPdfFromStorage: Exception e");
@@ -306,7 +324,6 @@ public class PageNotes extends AppCompatActivity
                 case GALLERY_RESULT:
                     Uri selectedImage = data.getData();
                     try {
-
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                         setImageTitle(bitmap);
 

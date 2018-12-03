@@ -109,10 +109,10 @@ public class PageProjects extends AppCompatActivity
                 projectPath = projectIdData.get(i);
                 dirPath= directoryData.get(i);
 
-                Toast.makeText(ctx,
-                        "This is project tag " + projectPath + ". Lead this to notes" +
-                                " with the project and directory tag("+ dirPath + ")",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(ctx,
+                        //"This is project tag " + projectPath + ". Lead this to notes" +
+                               // " with the project and directory tag("+ dirPath + ")",
+                       // Toast.LENGTH_LONG).show();
                 Log.d(TAG, "onItemClick: after toast");
 
                 Intent navToPageNotes = new Intent(ctx, PageNotes.class);
