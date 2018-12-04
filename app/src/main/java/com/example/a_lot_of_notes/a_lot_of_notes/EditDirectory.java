@@ -4,15 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-
-import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
 
 public class EditDirectory extends AppCompatDialogFragment {
 
@@ -29,6 +25,7 @@ public class EditDirectory extends AppCompatDialogFragment {
 
         Bundle bundle = getArguments();
         final String oldName = bundle.getString("oldName");
+        final String id = bundle.getString("id");
         final String page = bundle.getString("page");
 
         editDirName.setText(oldName);
@@ -46,7 +43,7 @@ public class EditDirectory extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String newName = editDirName.getText().toString();
-                        listener.updateName(newName, oldName);
+                        listener.updateName(newName, id);
                     }
                 });
 
@@ -61,12 +58,12 @@ public class EditDirectory extends AppCompatDialogFragment {
             listener = (EditDirectoryListener) context;
         } catch (ClassCastException e){
             throw new ClassCastException(context.toString() +
-            "must implement EditDirectoryListener");
+                    "must implement EditDirectoryListener");
         }
     }
 
     public interface EditDirectoryListener{
-        void updateName(String newName, String oldName);
+        void updateName(String newName, String id);
     }
 
 }

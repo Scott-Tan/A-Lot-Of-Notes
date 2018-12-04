@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -28,9 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,23 +53,26 @@ public class PageNotes extends AppCompatActivity
     static String noteIdPath = "";
     static String imagePath = "";
     static String pdfUri = "";
+    static String imageTitle = "";
+    static String pdfTitle = "";
     Context ctx;
     FloatingActionButton fab;
     Database db;
-
+    com.example.a_lot_of_notes.a_lot_of_notes.ListAdapter noteAdapter;
     ListView listNote;
 
     // Someone please change this into a multi dimensional array. This is awful :[
-    ArrayList<String> allData;
+    ArrayList<ListRow> allData;
     ArrayList<String> imageIdData;
     ArrayList<String> imageTitleData;
     ArrayList<String> imagePathData;
-    ArrayList<String> imageData;
+    ArrayList<ListRow> imageData;
     ArrayList<String> pdfIdData;
-    ArrayList<String> pdfData;
+    ArrayList<String> pdfTitleData;
+    ArrayList<ListRow> pdfData;
     ArrayList<String> pdfUriData;
     ArrayList<String> noteIdData;
-    ArrayList<String> note_data;
+    ArrayList<ListRow> note_data;
 
 
     @Override
@@ -105,10 +105,10 @@ public class PageNotes extends AppCompatActivity
         listNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(ctx,
-                        //"This is item " + allData.get(i) + ". Lead this to a page" +
-                                //" that shows the note with an edit/save/delete option.",
-                       // Toast.LENGTH_LONG).show();
+//                Toast.makeText(ctx,
+//                        "This is item " + allData.get(i) + ". Lead this to a page" +
+//                                " that shows the note with an edit/save/delete option.",
+//                        Toast.LENGTH_LONG).show();
 
                 if(i >= NUMBER_OF_IMGPDF){              //note is selected
                     Log.d(TAG, "onItemClick: num images = " + NUMBER_OF_IMAGES);
@@ -126,11 +126,13 @@ public class PageNotes extends AppCompatActivity
                     pdfUri = pdfUriData.get(i - NUMBER_OF_IMAGES);
                     Log.d(TAG, "onItemClick: pdfUri = " + pdfUri);
                     Intent openPdf = new Intent(ctx, ShowPdf.class);
+                    pdfTitle = pdfTitleData.get(i - NUMBER_OF_IMAGES);
                     startActivity(openPdf);
                 } else {                                //image is selected
                     Log.d(TAG, "onItemClick: i = " + i);
                     imagePath = imagePathData.get(i);
                     Intent openImage = new Intent(ctx, ShowImage.class);
+                    imageTitle = imageTitleData.get(i);
                     startActivity(openImage);
                 }
             }
@@ -190,6 +192,7 @@ public class PageNotes extends AppCompatActivity
         imagePathData = new ArrayList<>();
         imageData = new ArrayList<>();
         pdfIdData = new ArrayList<>();
+        pdfTitleData = new ArrayList<>();
         pdfData = new ArrayList<>();
         pdfUriData = new ArrayList<>();
         noteIdData = new ArrayList<>();
@@ -200,10 +203,11 @@ public class PageNotes extends AppCompatActivity
             String image_id = imageCursor.getString(0);
             String image_title = imageCursor.getString(1);
             String image_path = imageCursor.getString(2);
+            String image_date = imageCursor.getString(5);
 
+            imageData.add(new ListRow(image_title, image_date, image_path));
             imageIdData.add(image_id);
             imageTitleData.add(image_title);
-            imageData.add("Image: " + image_title);
             imagePathData.add(image_path);
         }
 
@@ -212,11 +216,13 @@ public class PageNotes extends AppCompatActivity
 
         while(pdfCursor.moveToNext()){
             String pdf_id = pdfCursor.getString(0);
-            String pdf_title = pdfCursor.getString(1);
+            String pdf_title = "PDF: " + pdfCursor.getString(1);
             String pdf_uri = pdfCursor.getString(2);
+            String pdf_date = pdfCursor.getString(5);
 
+            pdfData.add(new ListRow(pdf_title, pdf_date));
             pdfIdData.add(pdf_id);
-            pdfData.add("Pdf: " + pdf_title);
+            pdfTitleData.add(pdf_title);
             pdfUriData.add(pdf_uri);
         }
 
@@ -226,8 +232,9 @@ public class PageNotes extends AppCompatActivity
         while(noteCursor.moveToNext()){
             String note_id = noteCursor.getString(0);
             String note_title = noteCursor.getString(3);
+            String note_date = noteCursor.getString(5);
 
-            note_data.add(note_title);
+            note_data.add(new ListRow(note_title, note_date));
             noteIdData.add(note_id);
         }
         Log.d(TAG, "populateNoteList: after loop");
@@ -237,19 +244,18 @@ public class PageNotes extends AppCompatActivity
         allData.addAll(pdfData);
         allData.addAll(note_data);
 
-        ListAdapter adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, allData);
-        listNote.setAdapter(adapter);
+        noteAdapter = new com.example.a_lot_of_notes.a_lot_of_notes.ListAdapter(this, R.layout.list_custom, allData);
+        noteAdapter.notifyDataSetChanged();
+        listNote.setAdapter(noteAdapter);
 
         Log.d(TAG, "populateNoteList: ending");
 
         NUMBER_OF_IMGPDF = NUMBER_OF_IMAGES + NUMBER_OF_PDFS;
-
     }
 
     /*
-    * Menu operations below
-    * */
+     * Menu operations below
+     * */
 
     // Inflate the menu; this adds items to the action bar if it is present.
     @Override
@@ -324,6 +330,7 @@ public class PageNotes extends AppCompatActivity
                 case GALLERY_RESULT:
                     Uri selectedImage = data.getData();
                     try {
+
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                         setImageTitle(bitmap);
 
@@ -335,7 +342,7 @@ public class PageNotes extends AppCompatActivity
                     Uri selectedPdf = data.getData();
                     setPdfTitle(selectedPdf);
                     break;
-                    
+
                 default:
                     Log.d(TAG, "onActivityResult: error: default case?");
                     break;
@@ -536,7 +543,7 @@ public class PageNotes extends AppCompatActivity
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Log.d(TAG, "onClick: pdfid: " + pdfid
-                                        + "\n num img" + NUMBER_OF_IMAGES);
+                                + "\n num img" + NUMBER_OF_IMAGES);
 
                         db.deleteSinglePdf(pdfid, dirPath, projPath);
                         Toast.makeText(PageNotes.this, "Deleted", Toast.LENGTH_LONG).show();

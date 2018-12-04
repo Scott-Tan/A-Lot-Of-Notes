@@ -40,6 +40,7 @@ public class ShowNote extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_note);
         Log.d(TAG, "onCreate: starting");
+        setTitle("");
 
         db = new Database(this);
         ctx = this;
