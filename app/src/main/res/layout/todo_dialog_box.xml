@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,6 +10,8 @@
         android:id="@+id/todo_dialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="Create new..."
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -16,14 +19,45 @@
         android:id="@+id/todo_userInputDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/todo_dialogTitle"
         android:hint="Remember to do..."
         android:inputType="textCapSentences" />
 
-    <EditText
-        android:id="@+id/todo_due_userInputDialog"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/set_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="by..."
-        android:inputType="textCapSentences" />
+        android:layout_below="@id/todo_userInputDialog"
+        android:layout_alignParentRight="true"
+        android:text="Set Date" />
 
-</android.widget.LinearLayout>
+    <TextView
+        android:id="@+id/todo_date"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/todo_userInputDialog"
+        android:layout_alignBottom="@id/set_date"
+        android:layout_toLeftOf="@id/set_date"
+        android:layout_toRightOf="@id/due_text"
+        android:gravity="left|center"
+        android:paddingLeft="8dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:text="mm/dd/yyyy" />
+
+    <TextView
+        android:id="@+id/due_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/todo_userInputDialog"
+        android:layout_alignStart="@+id/todo_dialogTitle"
+        android:layout_alignBottom="@id/set_date"
+        android:layout_alignParentLeft="true"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="8dp"
+        android:text="Due: "
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+</RelativeLayout>

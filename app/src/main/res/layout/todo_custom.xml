@@ -23,9 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/todo_title"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/due_title"
         android:layout_marginBottom="8dp"
-        android:layout_toStartOf="@+id/delete_todo"
         android:textSize="14sp"
         tools:text="mm/dd/yyyy" />
 
@@ -38,5 +37,13 @@
         android:layout_alignParentRight="true"
         android:onClick="deleteTask"
         app:srcCompat="@android:drawable/ic_delete" />
+
+    <TextView
+        android:id="@+id/due_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/todo_title"
+        android:text="Due: " />
 
 </RelativeLayout>
