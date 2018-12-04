@@ -23,7 +23,6 @@ public class ShowPdf extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_pdf);
-        setTitle(PageNotes.pdfTitle);
 
         Log.d(TAG, "onCreate: starting");
         pdfView = (PDFView)findViewById(R.id.pdfView);

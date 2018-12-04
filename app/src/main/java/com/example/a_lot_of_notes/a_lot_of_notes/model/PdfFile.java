@@ -12,7 +12,6 @@ public class PdfFile {
         public static final String COLUMN_PDF_URI = "pdf_URI";
         public static final String COLUMN_PDF_DIRECTORY = "pdf_directory";
         public static final String COLUMN_PDF_PROJECT = "pdf_project";
-        public static final String COLUMN_TIMESTAMP = "pdf_timestamp";
 
         public static final String CREATE_PDF_TABLE = "CREATE TABLE "
                 + PdfFile.PdfFileEntry.TABLE_NAME + " ("
@@ -20,7 +19,6 @@ public class PdfFile {
                 + PdfFile.PdfFileEntry.COLUMN_PDF_TITLE + " TEXT, "
                 + PdfFile.PdfFileEntry.COLUMN_PDF_URI + " TEXT, "
                 + PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY + " TEXT, "
-                + PdfFileEntry.COLUMN_PDF_PROJECT + " TEXT, "
-                + PdfFile.PdfFileEntry.COLUMN_TIMESTAMP + " DATETIME" + ")";
+                + PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT + " TEXT" + ")";
     }
 }

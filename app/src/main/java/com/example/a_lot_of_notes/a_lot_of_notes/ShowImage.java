@@ -22,7 +22,6 @@ public class ShowImage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_image);
         Log.d(TAG, "onCreate: starting");
-        setTitle(PageNotes.imageTitle);
 
         ctx = this;
         imageView = findViewById(R.id.imageView_show_image);

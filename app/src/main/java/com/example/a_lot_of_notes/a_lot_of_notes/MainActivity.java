@@ -9,7 +9,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,7 +23,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,10 +43,7 @@ public class MainActivity extends AppCompatActivity
     private Context ctx;
     private Database db;
     private ListView toDoList;
-    ArrayList<TodoRow> taskData;
-    ArrayList<String> taskIdData;
-    TodoAdapter todoAdapter;
-
+    private ArrayList<String> taskData;
     private String taskCategory = "";
 
     @Override
@@ -56,13 +58,6 @@ public class MainActivity extends AppCompatActivity
 
         loadActionBarOptions();
         populateToDoList();
-
-        toDoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ctx, "Edit ToDo", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
@@ -157,24 +152,20 @@ public class MainActivity extends AppCompatActivity
     private void populateToDoList(){
         Log.d(TAG, "populateToDoList: starting");
 
-        taskData = new ArrayList<>();
-        taskIdData = new ArrayList<>();
         Cursor taskCursor = db.getTaskList();
+        taskData = new ArrayList<>();
 
         Log.d(TAG, "populateToDoList: before loop");
         while(taskCursor.moveToNext()){
-            String taskId= taskCursor.getString(0);
             String taskName = taskCursor.getString(1);
             String taskDue = taskCursor.getString(3);
 
-            taskData.add(new TodoRow(taskName, taskDue));
-            taskIdData.add(taskId);
+            taskData.add(taskName + "\n" + "    due: " + taskDue);
         }
-
         Log.d(TAG, "populateToDoList: after loop");
-        todoAdapter = new TodoAdapter(this, R.layout.todo_custom, taskData);
-        todoAdapter.notifyDataSetChanged();
-        toDoList.setAdapter(todoAdapter);
+        ListAdapter adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, taskData);
+        toDoList.setAdapter(adapter);
 
         Log.d(TAG, "populateToDoList: ending");
     }
@@ -231,24 +222,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void deleteTask(View view) {
-        View parentRow = (View) view.getParent();
-        ListView taskList = (ListView) parentRow.getParent();
-        final int position = taskList.getPositionForView(parentRow);
-
-        String id = taskIdData.get(position);
-        db.deleteSingleTask(id);
-
-        Toast.makeText(ctx, "Done!", Toast.LENGTH_SHORT).show();
-        populateToDoList();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        populateToDoList();
     }
 
 }

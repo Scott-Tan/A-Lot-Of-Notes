@@ -39,26 +39,23 @@ import java.util.ArrayList;
 // Directs to an individual project.
 public class PageProjects extends AppCompatActivity
         implements EditDirectory.EditDirectoryListener, NavigationView.OnNavigationItemSelectedListener {
-
     private static final String TAG = "PageProjects";
     static String projectPath = "";
-    String dirPath, dirName, newProjName;
+    String dirPath, newProjName;
     Context ctx;
     Database db;
     private ListView listProject;
     FloatingActionButton fab;
-    ArrayList<ListRow> listData;
+    ArrayList<String> listData;
     ArrayList<String> directoryData;
     ArrayList<String> projectIdData;
-    com.example.a_lot_of_notes.a_lot_of_notes.ListAdapter projAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_nav);
         dirPath = PageDirectories.directoryPath;
-        dirName = PageDirectories.directoryName;
-        setTitle("Projects in " + dirName);
+        setTitle("Projects");
 
         Log.d(TAG, "onCreate: starting");
         ctx = this;
@@ -112,10 +109,10 @@ public class PageProjects extends AppCompatActivity
                 projectPath = projectIdData.get(i);
                 dirPath= directoryData.get(i);
 
-//                Toast.makeText(ctx,
-//                        "This is project tag " + projectPath + ". Lead this to notes" +
-//                                " with the project and directory tag("+ dirPath + ")",
-//                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(ctx,
+                        //"This is project tag " + projectPath + ". Lead this to notes" +
+                               // " with the project and directory tag("+ dirPath + ")",
+                       // Toast.LENGTH_LONG).show();
                 Log.d(TAG, "onItemClick: after toast");
 
                 Intent navToPageNotes = new Intent(ctx, PageNotes.class);
@@ -194,46 +191,17 @@ public class PageProjects extends AppCompatActivity
             // index 0 is the project id
             // index 1 should be project name column
             // index 2 should be the directory tag column
-            String projectId = data.getString(0);
-            String projectName = data.getString(1);
-            String curDirectory = data.getString(2);
-            String projectDate = data.getString(3);
-
-            listData.add(new ListRow(projectName, projectDate));
-            projectIdData.add(projectId);
-            directoryData.add(curDirectory);
+            projectIdData.add(data.getString(0));
+            listData.add(data.getString(1));
+            directoryData.add(data.getString(2));
         }
-
         Log.d(TAG, "populateProjectList: end of loop");
-        projAdapter = new com.example.a_lot_of_notes.a_lot_of_notes.ListAdapter(this, R.layout.list_custom, listData);
-        projAdapter.notifyDataSetChanged();
-        listProject.setAdapter(projAdapter);
+
+        ListAdapter adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, listData);
+        listProject.setAdapter(adapter);
 
         Log.d(TAG, "populateProjectList: ending");
-
-//        Log.d(TAG, "populateProjectList: starting");
-//
-//        Cursor data = db.getProjectsFromDirectory(dirPath);
-//        listData = new ArrayList<>();
-//        directoryData = new ArrayList<>();
-//        projectIdData = new ArrayList<>();
-//
-//        Log.d(TAG, "populateProjectList: before loop");
-//        while(data.moveToNext()){
-//            // index 0 is the project id
-//            // index 1 should be project name column
-//            // index 2 should be the directory tag column
-//            projectIdData.add(data.getString(0));
-//            listData.add(data.getString(1));
-//            directoryData.add(data.getString(2));
-//        }
-//        Log.d(TAG, "populateProjectList: end of loop");
-//
-//        ListAdapter adapter = new ArrayAdapter<>(this,
-//                android.R.layout.simple_list_item_1, listData);
-//        listProject.setAdapter(adapter);
-//
-//        Log.d(TAG, "populateProjectList: ending");
     }
 
     @Override
@@ -251,43 +219,38 @@ public class PageProjects extends AppCompatActivity
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         final int index = info.position;
-        projectPath = projectIdData.get(index);
-
-        Cursor data = db.getProjectsFromDirectory(dirPath);
-        data.moveToPosition(index);
-        String oldName = data.getString(1);
+        final String name = listProject.getItemAtPosition(index).toString();
 
         if (item.getTitle() == "Edit") {
             // Open dialog for edit
-            openEditProj(oldName, projectPath);
+            openEditProj(name);
         }
         else if (item.getTitle() == "Delete") {
             // Confirmation Dialog
-            deleteProjAlert(projectPath);
+            deleteProjAlert(name);
         }
         return true;
     }
 
     // Helper: Edit Project
-    public void openEditProj(String oldName, String id){
+    public void openEditProj(String oldName){
         EditDirectory editDirectory = new EditDirectory();
         Bundle bundle = new Bundle();
         bundle.putString("page", "Project");
         bundle.putString("oldName", oldName);
-        bundle.putString("id", id);
         editDirectory.setArguments(bundle);
         editDirectory.show(getSupportFragmentManager(), "edit directory");
     }
 
     // Helper: Delete Project Alert Box
-    public void deleteProjAlert(final String projID){
+    public void deleteProjAlert(final String projName){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmation");
         builder.setMessage("Are you sure you want to delete project?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        db.deleteSingleProject(projID, dirPath);
+                        db.deleteSingleProject(projName,dirPath);
                         Toast.makeText(PageProjects.this, "Deleted", Toast.LENGTH_LONG).show();
                         populateProjectList();
                     }
@@ -302,10 +265,9 @@ public class PageProjects extends AppCompatActivity
     }
 
     @Override
-    public void updateName(String newName, String id) {
+    public void updateName(String newName, String oldName) {
         newProjName = newName;
-        db.updateProjectName(newProjName, id, dirPath);
-        db.updateProjDate(id);
+        db.updateProjectName(newProjName, oldName, dirPath);
         Toast.makeText(PageProjects.this, "Updated" , Toast.LENGTH_LONG).show();
         populateProjectList();
     }

@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,7 +24,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,14 +40,12 @@ public class PageDirectories extends AppCompatActivity
 
     private static final String TAG = "PageDirectories";
     static String directoryPath = "";
-    static String directoryName = "";
     String newDirName;
     Context ctx;
     Database db;
     ListView listDirectory;
-    ArrayList<ListRow> directoryData;
+    ArrayList<String> directoryData;
     ArrayList<String> directoryIdData;
-    ListAdapter dirAdapter;
     FloatingActionButton fab;
 
     @Override
@@ -105,14 +106,11 @@ public class PageDirectories extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick: starting");
                 directoryPath = directoryIdData.get(i);
-                Cursor directoryCursor = db.getAllDirectories();
-                directoryCursor.moveToPosition(i);
-                directoryName = directoryCursor.getString(1);
 
-//                Toast.makeText(ctx,
-//                        "This is directory " + directoryName + ". Lead this to projects" +
-//                                " with the directory tag: " + directoryPath,
-//                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(ctx,
+                        //"This is directory " + directoryData.get(i) + ". Lead this to projects" +
+                                //" with the directory tag: " + directoryPath,
+                        //Toast.LENGTH_LONG).show();
 
                 Log.d(TAG, "onItemClick: ending");
                 Intent navToProjects = new Intent(ctx, PageProjects.class);
@@ -190,18 +188,16 @@ public class PageDirectories extends AppCompatActivity
 
         Log.d(TAG, "populateDirectoryList: before loop");
         while(directoryCursor.moveToNext()){
-            String directoryId = directoryCursor.getString(0);
             String directoryName = directoryCursor.getString(1);
-            String directoryDate = directoryCursor.getString(2);
+            String directoryId = directoryCursor.getString(0);
 
-            directoryData.add(new ListRow(directoryName, directoryDate));
+            directoryData.add(directoryName);
             directoryIdData.add(directoryId);
         }
-
         Log.d(TAG, "populateDirectoryList: after loop");
-        dirAdapter = new ListAdapter(this, R.layout.list_custom, directoryData);
-        dirAdapter.notifyDataSetChanged();
-        listDirectory.setAdapter(dirAdapter);
+        ListAdapter adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, directoryData);
+        listDirectory.setAdapter(adapter);
 
         Log.d(TAG, "populateDirectoryList: ending");
     }
@@ -221,43 +217,38 @@ public class PageDirectories extends AppCompatActivity
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         final int index = info.position;
-        directoryPath = directoryIdData.get(index);
-
-        Cursor directoryCursor = db.getAllDirectories();
-        directoryCursor.moveToPosition(index);
-        String oldName = directoryCursor.getString(1);
+        final String name = listDirectory.getItemAtPosition(index).toString();
 
         if (item.getTitle() == "Edit") {
             // Open dialog for edit
-            openEditDir(oldName, directoryPath);
+            openEditDir(name);
         }
         else if (item.getTitle() == "Delete") {
             // Confirmation Dialog
-            deleteDirAlert(directoryPath);
+            deleteDirAlert(name);
         }
         return true;
     }
 
     // Helper: Edit Directory
-    public void openEditDir(String oldName, String id){
+    public void openEditDir(String oldName){
         EditDirectory editDirectory = new EditDirectory();
         Bundle bundle = new Bundle();
         bundle.putString("page", "Directory");
         bundle.putString("oldName", oldName);
-        bundle.putString("id", id);
         editDirectory.setArguments(bundle);
         editDirectory.show(getSupportFragmentManager(), "edit directory");
     }
 
     // Helper: Delete Directory Alert Box
-    public void deleteDirAlert(final String dirID){
+    public void deleteDirAlert(final String dirName){
         AlertDialog.Builder builder = new AlertDialog.Builder(PageDirectories.this);
         builder.setTitle("Confirmation");
         builder.setMessage("Are you sure you want to delete directory?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        db.deleteSingleDirectory(dirID);
+                        db.deleteSingleDirectory(dirName);
                         Toast.makeText(PageDirectories.this, "Deleted", Toast.LENGTH_LONG).show();
                         populateDirectoryList();
                     }
@@ -272,10 +263,9 @@ public class PageDirectories extends AppCompatActivity
     }
 
     @Override
-    public void updateName(String newName, String id) {
+    public void updateName(String newName, String oldName) {
         newDirName = newName;
-        db.updateDirectoryName(newDirName, id);
-        db.updateDirDate(id);
+        db.updateDirectoryName(newDirName, oldName);
         Toast.makeText(PageDirectories.this, "Updated" , Toast.LENGTH_LONG).show();
         populateDirectoryList();
     }
@@ -339,5 +329,5 @@ public class PageDirectories extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    
 }
