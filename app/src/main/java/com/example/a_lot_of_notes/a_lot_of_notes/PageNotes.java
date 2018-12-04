@@ -205,7 +205,7 @@ public class PageNotes extends AppCompatActivity
             String image_path = imageCursor.getString(2);
             String image_date = imageCursor.getString(5);
 
-            imageData.add(new ListRow(image_title, image_date, image_path));
+            imageData.add(new ListRow(image_title, image_date, image_path, "img"));
             imageIdData.add(image_id);
             imageTitleData.add(image_title);
             imagePathData.add(image_path);
@@ -216,11 +216,12 @@ public class PageNotes extends AppCompatActivity
 
         while(pdfCursor.moveToNext()){
             String pdf_id = pdfCursor.getString(0);
-            String pdf_title = "PDF: " + pdfCursor.getString(1);
+            String pdf_title = pdfCursor.getString(1);
             String pdf_uri = pdfCursor.getString(2);
             String pdf_date = pdfCursor.getString(5);
 
-            pdfData.add(new ListRow(pdf_title, pdf_date));
+
+            pdfData.add(new ListRow(pdf_title, pdf_date, "", "pdf"));
             pdfIdData.add(pdf_id);
             pdfTitleData.add(pdf_title);
             pdfUriData.add(pdf_uri);
@@ -234,7 +235,7 @@ public class PageNotes extends AppCompatActivity
             String note_title = noteCursor.getString(3);
             String note_date = noteCursor.getString(5);
 
-            note_data.add(new ListRow(note_title, note_date));
+            note_data.add(new ListRow(note_title, note_date, "", "note"));
             noteIdData.add(note_id);
         }
         Log.d(TAG, "populateNoteList: after loop");
@@ -484,8 +485,18 @@ public class PageNotes extends AppCompatActivity
         String id;
 
         if (item.getTitle() == "Edit") {
-            // Open AddNotes class to edit notes
-            openEditNote();
+            if(index >= NUMBER_OF_IMGPDF){
+                Log.d(TAG, "onContextItemSelected: item was selected");
+                // Open AddNotes class to edit notes
+                openEditNote();
+            }else if(index >= NUMBER_OF_IMAGES){        // selected pdf
+                Log.d(TAG, "onContextItemSelected: pdf was selected");
+                Toast.makeText(PageNotes.this, "Unable to edit PDF", Toast.LENGTH_LONG).show();
+            }else{                                      // selected image
+                Log.d(TAG, "onContextItemSelected: image was selected");
+                Toast.makeText(PageNotes.this, "Unable to edit image", Toast.LENGTH_LONG).show();
+            }
+
         } else if (item.getTitle() == "Delete") {
             // Confirmation Dialog
             if(index >= NUMBER_OF_IMGPDF){
@@ -631,15 +642,16 @@ public class PageNotes extends AppCompatActivity
             startActivity(intent);
 
 
-        } else if (id == R.id.dev_note_page) {
-            // Navigate to dev page options in navigation menu
-            Intent intent = new Intent(this, TestPages.class);
-            startActivity(intent);
-        } else if (id == R.id.dev_image_page) {
-            // Navigate to image testing page in navigation menu
-            Intent intent = new Intent(this, TestImage.class);
-            startActivity(intent);
         }
+//        else if (id == R.id.dev_note_page) {
+//            // Navigate to dev page options in navigation menu
+//            Intent intent = new Intent(this, TestPages.class);
+//            startActivity(intent);
+//        } else if (id == R.id.dev_image_page) {
+//            // Navigate to image testing page in navigation menu
+//            Intent intent = new Intent(this, TestImage.class);
+//            startActivity(intent);
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

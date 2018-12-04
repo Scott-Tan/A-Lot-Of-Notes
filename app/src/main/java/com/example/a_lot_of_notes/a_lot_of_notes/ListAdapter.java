@@ -63,12 +63,28 @@ public class ListAdapter extends BaseAdapter {
 
         holder.listTitle.setText(listRow.getTitle());
         holder.listDate.setText(listRow.getDate());
-        if (listRow.getFile() != null){
+
+        int paddingDp = 8;
+        float density = ctx.getResources().getDisplayMetrics().density;
+        int paddingPixel = (int)(paddingDp * density);
+
+        if (listRow.getType() == "img"){
             holder.fileImage.setImageBitmap(BitmapFactory.decodeFile(listRow.getFile()));
             holder.fileImage.getLayoutParams().height = 300;
             holder.fileImage.getLayoutParams().width = 300;
         }
-
+        else if (listRow.getType() == "pdf"){
+            holder.fileImage.setImageResource(R.drawable.ic_pdf_file);
+            holder.fileImage.getLayoutParams().height = 180;
+            holder.fileImage.getLayoutParams().width = 180;
+            holder.fileImage.setPadding(paddingPixel,paddingPixel,paddingPixel,0);
+        }
+        else if(listRow.getType() == "note"){
+            holder.fileImage.setImageResource(R.drawable.ic_note_file);
+            holder.fileImage.getLayoutParams().height = 180;
+            holder.fileImage.getLayoutParams().width = 180;
+            holder.fileImage.setPadding(paddingPixel,paddingPixel,paddingPixel,0);
+        }
         return row;
     }
 }
