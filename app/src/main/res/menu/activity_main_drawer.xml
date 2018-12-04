@@ -18,17 +18,17 @@
             android:title="Camera" />
     </group>
 
-    <!--<item android:title="DevTools">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/dev_note_page"-->
-                <!--android:icon="@drawable/ic_menu_share"-->
-                <!--android:title="Navigate To Note DevPage" />-->
-            <!--<item-->
-                <!--android:id="@+id/dev_image_page"-->
-                <!--android:icon="@drawable/ic_menu_gallery"-->
-                <!--android:title="Navigate To Image DevPage" />-->
-        <!--</menu>-->
-    <!--</item>-->
+    <item android:title="DevTools">
+        <menu>
+            <item
+                android:id="@+id/dev_note_page"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Navigate To Note DevPage" />
+            <item
+                android:id="@+id/dev_image_page"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Navigate To Image DevPage" />
+        </menu>
+    </item>
 
 </menu>

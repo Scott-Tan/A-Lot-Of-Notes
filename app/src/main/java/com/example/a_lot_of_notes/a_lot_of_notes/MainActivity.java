@@ -1,19 +1,13 @@
 package com.example.a_lot_of_notes.a_lot_of_notes;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,8 +21,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,11 +41,8 @@ public class MainActivity extends AppCompatActivity
     ArrayList<TodoRow> taskData;
     ArrayList<String> taskIdData;
     TodoAdapter todoAdapter;
-    Button setDate;
-    TextView todoDate;
-    Calendar cal;
-    DatePickerDialog datePick;
-    String task_date;
+
+    private String taskCategory = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +52,17 @@ public class MainActivity extends AppCompatActivity
         db = new Database(this);
         ctx = this;
         toDoList = findViewById(R.id.list_view);
-        setTitle("Home: To-Do List");
+        setTitle("To-Do List");
 
         loadActionBarOptions();
         populateToDoList();
+
+        toDoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ctx, "Edit ToDo", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -105,39 +101,15 @@ public class MainActivity extends AppCompatActivity
     private void handlefabOnClick(View view){
         Log.d(TAG, "handlefabOnClick: fab starting");
         LayoutInflater layoutInflater = LayoutInflater.from(ctx);
-        final View mView = layoutInflater.inflate(R.layout.todo_dialog_box, null);
+        View mView = layoutInflater.inflate(R.layout.todo_dialog_box, null);
         android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(ctx);
         alertDialog.setView(mView);
 
         final EditText userInput = mView.findViewById(R.id.todo_userInputDialog);
+        final EditText userInput2 = mView.findViewById(R.id.todo_due_userInputDialog);
         TextView dialogTitle = mView.findViewById(R.id.todo_dialogTitle);
 
         dialogTitle.setText("Create something new todo...");
-
-        setDate = mView.findViewById(R.id.set_date);
-        todoDate = mView.findViewById(R.id.todo_date);
-
-        setDate.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                cal = Calendar.getInstance();
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-                int month = cal.get(Calendar.MONTH);
-                int year = cal.get(Calendar.YEAR);
-
-                datePick = new DatePickerDialog(ctx, android.R.style.Theme_Holo_Light_Dialog_MinWidth,new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int mYear, int mMonth, int mDay) {
-                        task_date = mMonth+1 + "/" + mDay + "/" + mYear;
-                        todoDate.setText(mMonth+1 + "/" + mDay + "/" + mYear);
-                    }
-                }, day, month, year);
-                datePick.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                datePick.show();
-            }
-        });
-
         Log.d(TAG, "handlefabOnClick: fab before alertdialog");
         alertDialog
                 .setCancelable(false)
@@ -145,8 +117,9 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String task_name = userInput.getText().toString();
+                        String task_due = userInput2.getText().toString();
                         Log.d(TAG, "handlefabOnClick: before insertDirectory");
-                        db.insertNewTask(task_name, task_date);
+                        db.insertNewTask(task_name, task_due, taskCategory);
                         populateToDoList();
                     }
                 })
@@ -192,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         while(taskCursor.moveToNext()){
             String taskId= taskCursor.getString(0);
             String taskName = taskCursor.getString(1);
-            String taskDue = taskCursor.getString(2);
+            String taskDue = taskCursor.getString(3);
 
             taskData.add(new TodoRow(taskName, taskDue));
             taskIdData.add(taskId);
@@ -245,16 +218,15 @@ public class MainActivity extends AppCompatActivity
             //startActivity(intent);
             onBackPressed();
 
+        } else if (id == R.id.dev_note_page) {
+            // Navigate to dev page options in navigation menu
+            Intent intent = new Intent(this, TestPages.class);
+            startActivity(intent);
+        } else if (id == R.id.dev_image_page) {
+            // Navigate to image testing page in navigation menu
+            Intent intent = new Intent(this, TestImage.class);
+            startActivity(intent);
         }
-//        else if (id == R.id.dev_note_page) {
-//            // Navigate to dev page options in navigation menu
-//            Intent intent = new Intent(this, TestPages.class);
-//            startActivity(intent);
-//        } else if (id == R.id.dev_image_page) {
-//            // Navigate to image testing page in navigation menu
-//            Intent intent = new Intent(this, TestImage.class);
-//            startActivity(intent);
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

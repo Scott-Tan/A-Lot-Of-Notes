@@ -160,11 +160,12 @@ public class Database extends SQLiteOpenHelper{
         return pdf_id;
     }
 
-    public long insertNewTask(String task, String task_due){
+    public long insertNewTask(String task, String task_due, String category){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(Task.TaskEntry.COLUMN_TASK_TITLE, task);
         cv.put(Task.TaskEntry.COLUMN_TASK_DUE, task_due);
+        cv.put(Task.TaskEntry.COLUMN_TASK_CATEGORY, category);
 
         Log.d(TAG, "insertNewTask: inserting");
         long task_id = db.insert(Task.TaskEntry.TABLE_NAME, null, cv);
@@ -343,16 +344,16 @@ public class Database extends SQLiteOpenHelper{
         Log.d(TAG, "updateNote: ending");
     }
 
-    public void updateTask(String task, String id){
+    public void updateTask(String task, String category){
         Log.d(TAG, "updateTask: starting");
         Log.d(TAG, "updateTask: task is: " + task);
-        Log.d(TAG, "updateTask: id is: " + id);
+        Log.d(TAG, "updateTask: category is: " + category);
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + Task.TaskEntry.TABLE_NAME
                 + " SET " + Task.TaskEntry.COLUMN_TASK_TITLE
                 + " = '" + task + "', "
-                + " WHERE " + Task.TaskEntry._ID
-                + " = '" + id + "'";
+                + " WHERE " + Task.TaskEntry.COLUMN_TASK_CATEGORY
+                + " = '" + category + "'";
         db.execSQL(query);
 
         Log.d(TAG, "updateTask: ending");

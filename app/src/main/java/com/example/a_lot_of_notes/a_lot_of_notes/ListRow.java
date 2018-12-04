@@ -4,18 +4,16 @@ public class ListRow {
     private String title;
     private String date;
     private String file;
-    private String type;
 
     public ListRow(String title, String date) {
         this.title = title;
         this.date = date;
     }
 
-    public ListRow(String title, String date, String file, String type) {
+    public ListRow(String title, String date, String file) {
         this.title = title;
         this.date = date;
         this.file = file;
-        this.type = type;
     }
 
     public String getTitle() {
@@ -40,13 +38,5 @@ public class ListRow {
 
     public void setFile(String file) {
         this.file = file;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
