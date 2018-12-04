@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/note_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:minWidth="70dp"
+        android:minHeight="70dp"
+        app:srcCompat="@drawable/ic_nav_folder_black_24dp" />
+
+    <TextView
+        android:id="@+id/list_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/note_img"
+        android:layout_alignBottom="@id/note_img"
+        android:layout_toRightOf="@id/note_img"
+        android:gravity="left|center_vertical"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:hint="Title" />
+
+    <TextView
+        android:id="@+id/note_date_modified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/note_img"
+        android:layout_toLeftOf="@id/item_date"
+        android:layout_toRightOf="@id/note_img"
+        android:text="Date Modified: "
+        android:textAlignment="textEnd"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/note_img"
+        android:layout_alignParentRight="true"
+        android:hint="mm/dd/yyyy"
+        android:textSize="10sp"
+        tools:text="date" />
+
+</RelativeLayout>

@@ -5,21 +5,18 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.a_lot_of_notes.a_lot_of_notes.Database.Database;
-import com.example.a_lot_of_notes.a_lot_of_notes.PageNotes;
-import com.example.a_lot_of_notes.a_lot_of_notes.R;
 import com.example.a_lot_of_notes.a_lot_of_notes.model.Notes;
 
 public class EditNote extends AppCompatActivity {
 
     private static final String TAG = "EditNote";
     EditText editTitle, editContent;
-    Button updateNote;
     String title, content, noteID;
     Database db;
     Context ctx;
@@ -28,35 +25,16 @@ public class EditNote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_notes);
+        setTitle("Edit Note");
 
         db = new Database(this);
         ctx = this;
 
         editTitle = findViewById(R.id.editText_notes_title);
         editContent = findViewById(R.id.editText_notes_content);
-        updateNote = findViewById(R.id.button_notes_save);
         noteID = PageNotes.noteIdPath;
 
         loadNoteToEdit(noteID);
-
-        updateNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "updateNote: starting");
-
-                title = editTitle.getText().toString();
-                content = editContent.getText().toString();
-                Log.d(TAG, "updateNote: title is: " + title);
-                Log.d(TAG, "updateNote: content is: " + content);
-
-                db.updateNote(title, content, noteID);
-                Toast.makeText(EditNote.this, "Updated note with id: " + noteID,
-                        Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "updateNote: ending");
-                finish();
-            }
-        });
-
     }
 
     private void loadNoteToEdit(String note_id) {
@@ -77,4 +55,29 @@ public class EditNote extends AppCompatActivity {
         Log.d(TAG, "loadNoteToEdit: setted editText");
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.save_note, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.save_note:
+                Log.d(TAG, "updateNote: starting");
+
+                title = editTitle.getText().toString();
+                content = editContent.getText().toString();
+                Log.d(TAG, "updateNote: title is: " + title);
+                Log.d(TAG, "updateNote: content is: " + content);
+
+                db.updateNote(title, content, noteID);
+                Toast.makeText(EditNote.this, "Updated note with id: " + noteID,
+                        Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "updateNote: ending");
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

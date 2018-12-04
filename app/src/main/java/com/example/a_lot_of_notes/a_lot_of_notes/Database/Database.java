@@ -2,13 +2,13 @@ package com.example.a_lot_of_notes.a_lot_of_notes.Database;
 
 
 /*
-*       Database.java
-*       Implement SQLite database to store user notes/folders/etc.
-*       May need other .java files to handle queries/sorting/etc.
-*
-*
-*
-* */
+ *       Database.java
+ *       Implement SQLite database to store user notes/folders/etc.
+ *       May need other .java files to handle queries/sorting/etc.
+ *
+ *
+ *
+ * */
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -132,6 +132,7 @@ public class Database extends SQLiteOpenHelper{
         cv.put(Image.ImageEntry.COLUMN_IMAGE_PATH, path);
         cv.put(Image.ImageEntry.COLUMN_IMAGE_DIRECTORY, directory_tag);
         cv.put(Image.ImageEntry.COLUMN_IMAGE_PROJECT, project_tag);
+        cv.put(Image.ImageEntry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertImagePath: inserting");
         long image_id = db.insert(Image.ImageEntry.TABLE_NAME, null, cv);
@@ -151,13 +152,14 @@ public class Database extends SQLiteOpenHelper{
         cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_URI, uri);
         cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY, directory_tag);
         cv.put(PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT, project_tag);
+        cv.put(PdfFile.PdfFileEntry.COLUMN_TIMESTAMP, getDateTime());
 
         Log.d(TAG, "insertPdf: inserting");
         long pdf_id = db.insert(PdfFile.PdfFileEntry.TABLE_NAME, null, cv);
         Log.d(TAG, "insertPdf: ending");
         return pdf_id;
     }
-    
+
     public long insertNewTask(String task, String task_due, String category){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -228,7 +230,7 @@ public class Database extends SQLiteOpenHelper{
 
         return data;
     }
-    
+
     // define queries to get needs
     public Cursor getProjectsFromDirectory(String directory_tag){
         Log.d(TAG, "getProjectsFromDirectory: starting");
@@ -303,25 +305,25 @@ public class Database extends SQLiteOpenHelper{
     // delete items
     // ...and?
 
-    public void updateDirectoryName(String newName, String oldName){
+    public void updateDirectoryName(String newName, String id){
         SQLiteDatabase db =this.getWritableDatabase();
         String query = "UPDATE " + Directories.Directories_Entry.TABLE_NAME
                 + " SET " + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME
                 + " = '" + newName + "' WHERE "
-                + Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME + " = '"
-                + oldName + "'";
+                + Directories.Directories_Entry._ID + " = '"
+                + id + "'";
         db.execSQL(query);
     }
 
-    public void updateProjectName(String newName, String oldName, String directory_tag){
+    public void updateProjectName(String newName, String id, String directory_tag){
         SQLiteDatabase db =this.getWritableDatabase();
         String query = "UPDATE " + Projects.Projects_Entry.TABLE_NAME
                 + " SET " + Projects.Projects_Entry.COLUMN_PROJECTS_NAME
                 + " = '" + newName + "' WHERE "
                 + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY + " = '"
                 + directory_tag + "' AND "
-                + Projects.Projects_Entry.COLUMN_PROJECTS_NAME + " = '"
-                + oldName + "'";
+                + Projects.Projects_Entry._ID + " = '"
+                + id + "'";
         db.execSQL(query);
     }
 
@@ -356,21 +358,47 @@ public class Database extends SQLiteOpenHelper{
 
         Log.d(TAG, "updateTask: ending");
     }
-    
-    public void deleteSingleDirectory(String name){
+
+    public void updateDirDate(String id){
+        Log.d(TAG, "updateDirDate: starting");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Directories.Directories_Entry.TABLE_NAME,
-                Directories.Directories_Entry.COLUMN_DIRECTORIES_NAME
-                        + " = ?", new String[]{name});
+        String query = "UPDATE " + Directories.Directories_Entry.TABLE_NAME
+                + " SET " + Directories.Directories_Entry.COLUMN_TIMESTAMP
+                + " = '" + getDateTime()
+                + "' WHERE " + Directories.Directories_Entry._ID
+                + " = '" + id + "'";
+        db.execSQL(query);
+
+        Log.d(TAG, "updateDirDate: ending");
     }
 
-    public void deleteSingleProject(String name, String directory_tag){
+    public void updateProjDate(String id){
+        Log.d(TAG, "updateDirDate: starting");
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + Projects.Projects_Entry.TABLE_NAME
+                + " SET " + Projects.Projects_Entry.COLUMN_TIMESTAMP
+                + " = '" + getDateTime()
+                + "' WHERE " + Projects.Projects_Entry._ID
+                + " = '" + id + "'";
+        db.execSQL(query);
+
+        Log.d(TAG, "updateDirDate: ending");
+    }
+
+    public void deleteSingleDirectory(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Directories.Directories_Entry.TABLE_NAME,
+                Directories.Directories_Entry._ID
+                        + " = ?", new String[]{id});
+    }
+
+    public void deleteSingleProject(String id, String directory_tag){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Projects.Projects_Entry.TABLE_NAME,
-                Projects.Projects_Entry.COLUMN_PROJECTS_NAME
+                Projects.Projects_Entry._ID
                         + " = ? AND "
                         + Projects.Projects_Entry.COLUMN_PROJECT_DIRECTORY
-                        + " = ?", new String[]{name, directory_tag});
+                        + " = ?", new String[]{id, directory_tag});
     }
 
     public void deleteSingleNote(String id, String dir_tag, String proj_tag){
@@ -399,11 +427,18 @@ public class Database extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(PdfFile.PdfFileEntry.TABLE_NAME,
                 PdfFile.PdfFileEntry._ID
-                + " = ? AND "
-                + PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY
-                + " = ? AND "
-                + PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT
-                + " = ?", new String[]{id, dir_tag, proj_tag});
+                        + " = ? AND "
+                        + PdfFile.PdfFileEntry.COLUMN_PDF_DIRECTORY
+                        + " = ? AND "
+                        + PdfFile.PdfFileEntry.COLUMN_PDF_PROJECT
+                        + " = ?", new String[]{id, dir_tag, proj_tag});
+    }
+
+    public void deleteSingleTask(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Task.TaskEntry.TABLE_NAME,
+                Task.TaskEntry._ID
+                        + " = ?", new String[]{id});
     }
 
     public void deleteDirectory(){
@@ -428,8 +463,8 @@ public class Database extends SQLiteOpenHelper{
         Log.d(TAG, "deleteImageById: ending");
         return data;
     }
-    
-    public void deleteTask(String task){
+
+    public void deleteAllTask(String task){
         SQLiteDatabase db = getWritableDatabase();
         String query = "DELETE FROM " + Task.TaskEntry.TABLE_NAME;
         db.execSQL(query);
@@ -437,7 +472,7 @@ public class Database extends SQLiteOpenHelper{
 
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "MM/dd/yyyy - HH:mm", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }

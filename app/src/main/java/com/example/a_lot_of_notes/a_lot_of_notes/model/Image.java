@@ -12,6 +12,7 @@ public class Image {
         public static final String COLUMN_IMAGE_PATH = "image_path";
         public static final String COLUMN_IMAGE_DIRECTORY = "image_directory";
         public static final String COLUMN_IMAGE_PROJECT = "image_project";
+        public static final String COLUMN_TIMESTAMP = "image_timestamp";
 
         public static final String CREATE_IMAGE_TABLE = "CREATE TABLE "
                 + Image.ImageEntry.TABLE_NAME + " ("
@@ -19,6 +20,7 @@ public class Image {
                 + Image.ImageEntry.COLUMN_IMAGE_TITLE + " TEXT, "
                 + Image.ImageEntry.COLUMN_IMAGE_PATH + " TEXT, "
                 + Image.ImageEntry.COLUMN_IMAGE_DIRECTORY + " TEXT, "
-                + Image.ImageEntry.COLUMN_IMAGE_PROJECT + " TEXT" + ")";
+                + Image.ImageEntry.COLUMN_IMAGE_PROJECT + " TEXT, "
+                + Image.ImageEntry.COLUMN_TIMESTAMP + " DATETIME" + ")";
     }
 }
