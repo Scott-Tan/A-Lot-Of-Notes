@@ -488,6 +488,7 @@ public class PageNotes extends AppCompatActivity
             if(index >= NUMBER_OF_IMGPDF){
                 Log.d(TAG, "onContextItemSelected: item was selected");
                 // Open AddNotes class to edit notes
+                noteIdPath = noteIdData.get(index - NUMBER_OF_IMGPDF);
                 openEditNote();
             }else if(index >= NUMBER_OF_IMAGES){        // selected pdf
                 Log.d(TAG, "onContextItemSelected: pdf was selected");

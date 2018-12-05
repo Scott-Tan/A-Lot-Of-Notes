@@ -5,72 +5,17 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2c1e915-54d8-4881-9d00-8bbc439b21d1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-web.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/ic_note-web.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_note_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_pdf_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_note_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_pdf_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_note_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_pdf_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/ic_note_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/ic_pdf_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/ic_note_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/ic_pdf_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/amaranth.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/font_certs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/Database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageDirectories.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageDirectories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageNotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageNotes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageProjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageProjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/todo_custom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/todo_custom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/todo_dialog_box.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/todo_dialog_box.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-    </list>
+    <list default="true" id="488daaaf-2d69-460c-aed1-ff4bb09fc1b8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +31,17 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="A_Lot_of_Notes" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -95,8 +50,8 @@
       <file leaf-file-name="PageNotes.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageNotes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="215" lean-forward="true" selection-start-line="215" selection-end-line="215" />
+            <state relative-caret-position="266">
+              <caret line="523" column="32" lean-forward="true" selection-start-line="523" selection-start-column="32" selection-end-line="523" selection-end-column="32" />
               <folding>
                 <element signature="e#3200#3427#0" expanded="true" />
                 <element signature="e#3426#3427#0" expanded="true" />
@@ -104,29 +59,118 @@
                 <element signature="e#5498#5499#0" expanded="true" />
                 <element signature="e#6517#6548#0" expanded="true" />
                 <element signature="e#6550#6582#0" expanded="true" />
-                <element signature="e#13842#14502#0" expanded="true" />
-                <element signature="e#14501#14502#0" expanded="true" />
-                <element signature="e#14549#14912#0" expanded="true" />
-                <element signature="e#14911#14912#0" expanded="true" />
-                <element signature="e#16923#17512#0" expanded="true" />
-                <element signature="e#17511#17512#0" expanded="true" />
-                <element signature="e#17559#17922#0" expanded="true" />
-                <element signature="e#17921#17922#0" expanded="true" />
-                <element signature="e#21293#21722#0" expanded="true" />
-                <element signature="e#21721#21722#0" expanded="true" />
-                <element signature="e#21765#21959#0" expanded="true" />
-                <element signature="e#21958#21959#0" expanded="true" />
-                <element signature="e#22348#22839#0" expanded="true" />
-                <element signature="e#22838#22839#0" expanded="true" />
-                <element signature="e#22882#23076#0" expanded="true" />
-                <element signature="e#23075#23076#0" expanded="true" />
-                <element signature="e#23486#24041#0" expanded="true" />
-                <element signature="e#24040#24041#0" expanded="true" />
-                <element signature="e#24084#24278#0" expanded="true" />
-                <element signature="e#24277#24278#0" expanded="true" />
-                <element signature="e#25676#25936#0" expanded="true" />
-                <element signature="e#25935#25936#0" expanded="true" />
+                <element signature="e#13832#14492#0" expanded="true" />
+                <element signature="e#14491#14492#0" expanded="true" />
+                <element signature="e#14539#14902#0" expanded="true" />
+                <element signature="e#14901#14902#0" expanded="true" />
+                <element signature="e#16913#17502#0" expanded="true" />
+                <element signature="e#17501#17502#0" expanded="true" />
+                <element signature="e#17549#17912#0" expanded="true" />
+                <element signature="e#17911#17912#0" expanded="true" />
+                <element signature="e#21283#21712#0" expanded="true" />
+                <element signature="e#21711#21712#0" expanded="true" />
+                <element signature="e#21755#21949#0" expanded="true" />
+                <element signature="e#21948#21949#0" expanded="true" />
+                <element signature="e#22338#22829#0" expanded="true" />
+                <element signature="e#22828#22829#0" expanded="true" />
+                <element signature="e#22872#23066#0" expanded="true" />
+                <element signature="e#23065#23066#0" expanded="true" />
+                <element signature="e#23476#24031#0" expanded="true" />
+                <element signature="e#24030#24031#0" expanded="true" />
+                <element signature="e#24074#24268#0" expanded="true" />
+                <element signature="e#24267#24268#0" expanded="true" />
+                <element signature="e#25666#25926#0" expanded="true" />
+                <element signature="e#25925#25926#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TodoRow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoRow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TodoAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="note_option.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/note_option.xml">
+          <provider editor-type-id="text-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowImage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowNote.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1428">
+              <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowPdf.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowPdf.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="page_note.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/page_note.xml">
+          <provider editor-type-id="text-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="850">
+              <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2499">
+              <caret line="147" column="5" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -136,27 +180,25 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this is</find>
-      <find>listnot</find>
-      <find>editn</find>
-      <find>insert</find>
+      <find>directorypath</find>
+      <find>dirPath</find>
+      <find>taskCate</find>
+      <find>updateName</find>
+      <find>listNote</find>
+      <find>content</find>
     </findStrings>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$" value="C:\Users\Rahel Kurniawan\.gradle\wrapper\dists\gradle-4.6-all\bcst21l2brirad8k2ben1letg\gradle-4.6" />
+        <entry key="$PROJECT_DIR$" value="C:\Users\Scott\.gradle\wrapper\dists\gradle-4.6-all\bcst21l2brirad8k2ben1letg\gradle-4.6" />
       </map>
     </option>
     <option name="myGradleVersions">
@@ -169,14 +211,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="CMPS-121-Mobile-Applications" />
+              <option name="name" value="A_Lot_of_Notes" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="CMPS-121-Mobile-Applications" />
+                <option name="name" value="A_Lot_of_Notes" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
@@ -194,7 +236,7 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'CMPS-121-Mobile-Applications'." />
+                <option name="description" value="Displays the sub-projects of root project 'A_Lot_of_Notes'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
@@ -274,7 +316,7 @@
                 <option name="name" value="compileDebugAndroidTestJavaWithJavac" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'CMPS-121-Mobile-Applications'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'A_Lot_of_Notes'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
@@ -548,12 +590,12 @@
                 <option name="name" value="generateDebugAssets" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'CMPS-121-Mobile-Applications'. [incubating]" />
+                <option name="description" value="Displays the dependent components of components in root project 'A_Lot_of_Notes'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependentComponents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'CMPS-121-Mobile-Applications'." />
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'A_Lot_of_Notes'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
               </ExternalTaskPojo>
@@ -673,7 +715,7 @@
                 <option name="name" value="bundleRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'CMPS-121-Mobile-Applications'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'A_Lot_of_Notes'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
@@ -686,7 +728,7 @@
                 <option name="name" value="reportSourceSetTransformAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'CMPS-121-Mobile-Applications' (some of the displayed tasks may belong to subprojects)." />
+                <option name="description" value="Displays the tasks runnable from root project 'A_Lot_of_Notes' (some of the displayed tasks may belong to subprojects)." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -704,7 +746,7 @@
                 <option name="name" value="bundleDebugAndroidTestResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'CMPS-121-Mobile-Applications'." />
+                <option name="description" value="Displays all dependencies declared in root project 'A_Lot_of_Notes'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
@@ -804,7 +846,7 @@
                 <option name="name" value="packageAppClassesReleaseUnitTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'CMPS-121-Mobile-Applications'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'A_Lot_of_Notes'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -1046,7 +1088,7 @@
                 <option name="name" value="packageDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'CMPS-121-Mobile-Applications'." />
+                <option name="description" value="Displays the properties of root project 'A_Lot_of_Notes'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
@@ -2246,7 +2288,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="CMPS-121-Mobile-Applications" />
+              <option name="name" value="A_Lot_of_Notes" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-all/bcst21l2brirad8k2ben1letg/gradle-4.6/src/announce" />
@@ -2412,43 +2454,43 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/save_note.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_custom.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_notes.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowPdf.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowImage.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/PdfFile.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Image.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoRow.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/AddNotes.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/EditDirectory.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/EditNote.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/todo_custom.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ContentMain.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ToDoList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/input_dialog_box.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/todo.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/todo_dialog_box.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/Database/Database.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Task.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PgDirectories.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TestImage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/page_nav.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/page_app_bar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/show_pdg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/PdfFile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowImage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/Database/Database.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageDirectories.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageProjects.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListRow.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageNotes.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/show_pdf.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowPdf.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/note_option.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/page_note.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageNotes.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="width" value="977" />
-    <option name="height" value="1088" />
-  </component>
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="314" />
+    <option name="y" value="34" />
+    <option name="width" value="2002" />
+    <option name="height" value="1239" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -2456,28 +2498,101 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
-              <item name="CMPS-121-Mobile-Applications" type="1abcf292:AndroidViewProjectNode" />
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="a_lot_of_notes" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="a_lot_of_notes" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="a_lot_of_notes" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="A_Lot_of_Notes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="A_Lot_of_Notes" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="A_Lot_of_Notes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="A_Lot_of_Notes" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="android.sdk.path" value="$PROJECT_DIR$/../../../Android/sdk" />
-    <property name="device.picker.selection" value="ce081718a41e5e21017e" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CMPS-121-Mobile-Applications-master" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="device.picker.selection" value="Nexus_6P_API_26" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.packageName">
+      <recent name="com.example.a_lot_of_notes.a_lot_of_notes" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -2575,7 +2690,7 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="OUTPUT_DIRECTORY" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -2586,9 +2701,38 @@
       <properties />
       <listeners />
     </configuration>
-    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
+    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
   </component>
   <component name="SvnConfiguration">
@@ -2596,166 +2740,244 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c2c1e915-54d8-4881-9d00-8bbc439b21d1" name="Default" comment="" />
-      <created>1543897277517</created>
+      <changelist id="488daaaf-2d69-460c-aed1-ff4bb09fc1b8" name="Default" comment="" />
+      <created>1542911786526</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1543897277517</updated>
+      <updated>1542911786526</updated>
     </task>
-    <task id="LOCAL-00001" summary="- Update delete/edit database so it takes id.&#10;- Clean up UI">
-      <created>1543907254142</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1543907254142</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <frame x="314" y="34" width="2002" height="1239" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32931355" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32931355" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Build Variants" order="2" side_tool="true" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Preview" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32884097" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3298969" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298969" />
+      <window_info anchor="bottom" id="Logcat" order="7" visible="true" weight="0.3265306" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23020135" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.33153638" />
-      <window_info anchor="right" id="Gradle" order="3" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24974254" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32931355" />
+      <window_info anchor="right" id="Gradle" order="8" weight="0.32955715" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32884097" />
+      <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Preview" order="7" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3298969" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Update delete/edit database so it takes id.&#10;- Clean up UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Update delete/edit database so it takes id.&#10;- Clean up UI" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_page_directories_with_nav.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageDirectoriesWithNav.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_page_directories_with_nav.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_pg_directories.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/page_directories.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_notes.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_directory.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/page_nav_header.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PgDirectories.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/save_note.xml">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/page_nav.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/page.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_notes.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state />
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/input_notes.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowPdf.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/test_page.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_directories.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/todo_dialog_box.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/edit_directory.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TestPages.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        <state relative-caret-position="221">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowImage.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TestImage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        <state relative-caret-position="68">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/PdfFile.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/pg_directories.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/page_app_bar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="26" />
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Image.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        <state relative-caret-position="85">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/test_image.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Notes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/AddNotes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/EditDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="68" column="1" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/EditNote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="82" column="1" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -2766,189 +2988,145 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <element signature="e#265#291#0" expanded="true" />
-            <element signature="e#428#463#0" expanded="true" />
-            <element signature="e#487#520#0" expanded="true" />
-            <element signature="e#546#581#0" expanded="true" />
-            <element signature="e#608#641#0" expanded="true" />
-            <element signature="e#954#979#0" expanded="true" />
-            <element signature="e#1569#1605#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/todo_custom.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/PdfFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+        <state relative-caret-position="408">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/todo_dialog_box.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/EditNote.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageDirectories.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="336" column="11" selection-start-line="328" selection-start-column="10" selection-end-line="336" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageProjects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="354" column="64" lean-forward="true" selection-start-line="354" selection-start-column="64" selection-end-line="354" selection-end-column="64" />
-          <folding>
-            <element signature="e#2577#4415#0" expanded="true" />
-            <element signature="e#3423#3939#0" expanded="true" />
-            <element signature="e#3938#3939#0" expanded="true" />
-            <element signature="e#3994#4275#0" expanded="true" />
-            <element signature="e#4274#4275#0" expanded="true" />
-            <element signature="e#4414#4415#0" expanded="true" />
-            <element signature="e#4546#5272#0" expanded="true" />
-            <element signature="e#5271#5272#0" expanded="true" />
-            <element signature="e#7023#7054#0" expanded="true" />
-            <element signature="e#7056#7088#0" expanded="true" />
-            <element signature="e#11429#11790#0" expanded="true" />
-            <element signature="e#11789#11790#0" expanded="true" />
-            <element signature="e#11833#12027#0" expanded="true" />
-            <element signature="e#12026#12027#0" expanded="true" />
-            <element signature="e#13428#13688#0" expanded="true" />
-            <element signature="e#13687#13688#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_custom.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="79" column="82" selection-start-line="79" selection-start-column="82" selection-end-line="79" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/model/Task.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        <state relative-caret-position="986">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/Database/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="166" column="45" selection-start-line="166" selection-start-column="30" selection-end-line="166" selection-end-column="45" />
+        <state relative-caret-position="6103">
+          <caret line="377" column="46" selection-start-line="377" selection-start-column="46" selection-end-line="377" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageDirectories.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="112" column="26" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageProjects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/show_note.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/show_pdf.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1323">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
-          <folding>
-            <element signature="e#4071#5048#0" expanded="true" />
-            <element signature="e#4529#4883#0" expanded="true" />
-            <element signature="e#4882#4883#0" expanded="true" />
-            <element signature="e#5047#5048#0" expanded="true" />
-            <element signature="e#5219#5673#0" expanded="true" />
-            <element signature="e#5672#5673#0" expanded="true" />
-            <element signature="e#5720#5961#0" expanded="true" />
-            <element signature="e#5960#5961#0" expanded="true" />
-            <element signature="e#6350#6481#0" expanded="true" />
-            <element signature="e#6480#6481#0" expanded="true" />
-            <element signature="e#6669#6700#0" expanded="true" />
-            <element signature="e#6702#6734#0" expanded="true" />
-            <element signature="e#8843#9103#0" expanded="true" />
-            <element signature="e#9102#9103#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2499">
+          <caret line="147" column="5" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding>
-            <element signature="e#546#564#0" expanded="true" />
-            <element signature="e#780#798#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="850">
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
         </state>
       </provider>
       <provider editor-type-id="android-manifest">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowNote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/ShowPdf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/note_option.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/page_note.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/TodoAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a_lot_of_notes/a_lot_of_notes/PageNotes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="215" lean-forward="true" selection-start-line="215" selection-end-line="215" />
+        <state relative-caret-position="266">
+          <caret line="523" column="32" lean-forward="true" selection-start-line="523" selection-start-column="32" selection-end-line="523" selection-end-column="32" />
           <folding>
             <element signature="e#3200#3427#0" expanded="true" />
             <element signature="e#3426#3427#0" expanded="true" />
@@ -2956,28 +3134,28 @@
             <element signature="e#5498#5499#0" expanded="true" />
             <element signature="e#6517#6548#0" expanded="true" />
             <element signature="e#6550#6582#0" expanded="true" />
-            <element signature="e#13842#14502#0" expanded="true" />
-            <element signature="e#14501#14502#0" expanded="true" />
-            <element signature="e#14549#14912#0" expanded="true" />
-            <element signature="e#14911#14912#0" expanded="true" />
-            <element signature="e#16923#17512#0" expanded="true" />
-            <element signature="e#17511#17512#0" expanded="true" />
-            <element signature="e#17559#17922#0" expanded="true" />
-            <element signature="e#17921#17922#0" expanded="true" />
-            <element signature="e#21293#21722#0" expanded="true" />
-            <element signature="e#21721#21722#0" expanded="true" />
-            <element signature="e#21765#21959#0" expanded="true" />
-            <element signature="e#21958#21959#0" expanded="true" />
-            <element signature="e#22348#22839#0" expanded="true" />
-            <element signature="e#22838#22839#0" expanded="true" />
-            <element signature="e#22882#23076#0" expanded="true" />
-            <element signature="e#23075#23076#0" expanded="true" />
-            <element signature="e#23486#24041#0" expanded="true" />
-            <element signature="e#24040#24041#0" expanded="true" />
-            <element signature="e#24084#24278#0" expanded="true" />
-            <element signature="e#24277#24278#0" expanded="true" />
-            <element signature="e#25676#25936#0" expanded="true" />
-            <element signature="e#25935#25936#0" expanded="true" />
+            <element signature="e#13832#14492#0" expanded="true" />
+            <element signature="e#14491#14492#0" expanded="true" />
+            <element signature="e#14539#14902#0" expanded="true" />
+            <element signature="e#14901#14902#0" expanded="true" />
+            <element signature="e#16913#17502#0" expanded="true" />
+            <element signature="e#17501#17502#0" expanded="true" />
+            <element signature="e#17549#17912#0" expanded="true" />
+            <element signature="e#17911#17912#0" expanded="true" />
+            <element signature="e#21283#21712#0" expanded="true" />
+            <element signature="e#21711#21712#0" expanded="true" />
+            <element signature="e#21755#21949#0" expanded="true" />
+            <element signature="e#21948#21949#0" expanded="true" />
+            <element signature="e#22338#22829#0" expanded="true" />
+            <element signature="e#22828#22829#0" expanded="true" />
+            <element signature="e#22872#23066#0" expanded="true" />
+            <element signature="e#23065#23066#0" expanded="true" />
+            <element signature="e#23476#24031#0" expanded="true" />
+            <element signature="e#24030#24031#0" expanded="true" />
+            <element signature="e#24074#24268#0" expanded="true" />
+            <element signature="e#24267#24268#0" expanded="true" />
+            <element signature="e#25666#25926#0" expanded="true" />
+            <element signature="e#25925#25926#0" expanded="true" />
           </folding>
         </state>
       </provider>
