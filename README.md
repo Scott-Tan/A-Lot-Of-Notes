@@ -1,9 +1,9 @@
-# CMPS-121-Mobile-Applications
-Container for CMPS 121 (mostly project) <br>
+# A-Lot-Of-Notes
+This repository is a container for a note-taking android application  <br>
 This project is just a tool to learn some of the basics
 of Android mobile development <br>
 
-## Things that could be done after final class submission
+## Things that could still be done
 1) Refactor pages into fragments. Load these list fragments into main activity.<br> 
 Would elimnate having to define toolbars in each activity.
 2) Use recycler view and a custom adapter, so that the recycler view <br>
