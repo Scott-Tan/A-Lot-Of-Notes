@@ -15,6 +15,6 @@ can contain an image item, file item, and a note item
 
 Scott Tan [Scott-Tan] (Product owner && developer)
 
-Rahel Kurniawan[rakurnia] (Member && developer)
+Rahel Kurniawan [rakurnia] (Member && developer)
 
-Elizabeth Dinh[edinh21] (Member && developer)
+Elizabeth Dinh [edinh21] (Member && developer)
