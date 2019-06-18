@@ -11,7 +11,8 @@ can contain an image item, file item, and a note item
 3) Implement resizeable image.
 4) Many src files need abstraction to remove redundancy.
 
-Contributors to this project:
+# Contributors to this project:
+
 Scott Tan [Scott-Tan] (Product owner && developer)
 
 Rahel Kurniawan[rakurnia] (Member && developer)
